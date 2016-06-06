@@ -1,0 +1,8 @@
+project/
+target/
+.classpath
+.idea
+.project
+.worksheet
+*.sc
+*~
