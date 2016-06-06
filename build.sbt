@@ -22,7 +22,7 @@ scalaVersion := "2.10.4"
 //unmanagedBase := baseDirectory.value / "lib/target"
 
 libraryDependencies ++= Seq (
-    "commons-cli" % "commons-cli" % "1.3"
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test",
+    "commons-cli" % "commons-cli" % "1.3",
+    "org.scalatest" %% "scalatest" % "2.2.4" % "test"
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
 )
