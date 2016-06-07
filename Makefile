@@ -42,3 +42,7 @@ package:
 	git submodule update --init
 	cd lib && mvn clean package
 	sbt package
+
+.PHONY: test
+test:
+	tests/all.sh
