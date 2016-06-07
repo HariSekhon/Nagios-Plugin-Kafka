@@ -38,6 +38,7 @@ export KAFKA_PORT="${KAFKA_PORT:-9092}"
 # TODO: latest container 2.11_0.10 doesn't work yet, no leader takes hold
 #export KAFKA_VERSIONS="2.11_0.10 2.11_0.10 latest"
 export KAFKA_VERSIONS="2.10_0.8 2.11_0.8 2.10_0.9 2.11_0.9"
+export KAFKA_VERSIONS="2.10_0.9"
 if is_travis; then
     export KAFKA_VERSIONS="2.10_0.8"
 fi
@@ -61,7 +62,7 @@ test_kafka(){
     docker exec -ti "$DOCKER_CONTAINER" kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic "$KAFKA_TOPIC" || :
 
     hr
-    # TODO:
+    scala target/scala-*/check_kafka-assembly-*.jar com.linkedin.harisekhon.CheckKafka -H $HOST -P $KAFKA_PORT
     hr
     delete_container
     echo

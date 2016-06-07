@@ -26,7 +26,7 @@ echo "
 cd "$srcdir/..";
 
 for script in $(find tests -name 'test*.sh'); do
-    $script || :
+    $script
 done
 
 bash-tools/all.sh
