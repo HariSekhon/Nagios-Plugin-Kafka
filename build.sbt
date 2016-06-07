@@ -19,10 +19,11 @@ version := "0.1.0"
 
 scalaVersion := "2.10.4"
 
-//unmanagedBase := baseDirectory.value / "lib/target"
+unmanagedBase := baseDirectory.value / "lib/target"
 
 libraryDependencies ++= Seq (
-    "org.apache.kafka" % "kafka_2.10" % "0.8.2.2",
+    "org.apache.kafka" % "kafka_2.10" % "0.9.0.1",
+    "log4j" % "log4j" % "1.2.17",
     "commons-cli" % "commons-cli" % "1.3",
     "org.scalatest" %% "scalatest" % "2.2.4" % "test"
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
