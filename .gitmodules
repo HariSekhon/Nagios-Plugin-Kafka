@@ -4,3 +4,6 @@
 [submodule "lib"]
 	path = lib
 	url = https://github.com/harisekhon/lib-java
+[submodule "Dockerfiles"]
+	path = Dockerfiles
+	url = https://github.com/harisekhon/Dockerfiles
