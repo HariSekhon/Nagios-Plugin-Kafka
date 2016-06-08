@@ -31,26 +31,35 @@ import org.apache.log4j.Level
 import org.apache.log4j.Logger
 import collection.JavaConversions._
 
-object CheckKafka {
-
-    def main(args: Array[String]) {
-        val check_kafka = new CheckKafka(broker_list = "192.168.99.100:9200", topic = "nagios-plugin-kafka-test")
-//        check_kafka.subscribe()
-//        check_kafka.produce()
-//        check_kafka.consume()
-    }
+object CheckKafka extends App {
+    val check_kafka = new CheckKafka(
+                                     broker_list = "192.168.99.100:9092",
+                                     topic = "nagios-plugin-kafka-test"
+                                     )
+//    check_kafka.subscribe()
+//    check_kafka.produce()
+//    check_kafka.consume()
 }
 
-class CheckKafka(val broker_list: String = "localhost:9200", val topic: String = "test", val partition: Int = 0) {
+class CheckKafka(
+        val broker_list: String = "localhost:9092",
+        val topic: String = "test",
+        val partition: Int = 0,
+        // change default to -1 to ensure all ISRs have written msg
+        val required_acks: String = "1"){
 
     val log = Logger.getLogger("CheckKafka")
-    log.setLevel(Level.DEBUG)
+     // set in log4j.properties
+//    log.setLevel(Level.DEBUG)
+    // TODO: split consumer + producer values
     val props = new Properties
-    props.put("metadata.broker.list", broker_list)
+//    props.put("metadata.broker.list", broker_list)
     props.put("bootstrap.servers", broker_list)
-    props.put("key.serializer",   "org.apache.kafka.common.serialization.StringDeserializer")
+    props.put("client.id", "CheckKafka")
+    props put("request.required.acks", required_acks)
+    props.put("key.serializer",   "org.apache.kafka.common.serialization.StringSerializer")
     props.put("key.deserializer",   "org.apache.kafka.common.serialization.StringDeserializer")
-    props.put("value.serializer", "org.apache.kafka.common.serialization.StringDeserializer")
+    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     //    val consumer: KafkaConsumer[String, String] = new KafkaConsumer[String, String](props)
 //    val producer: KafkaProducer[String, String] = new KafkaProducer[String, String](props)
@@ -58,17 +67,18 @@ class CheckKafka(val broker_list: String = "localhost:9200", val topic: String =
 
 //    def subscribe(topic: String = topic): Unit = {
         if(props.getProperty("group.id") == null){
-            log.debug("group.id not set, creating random group id")
-            props.setProperty("group.id", "group-id-random-" + new Random().nextInt(100000))
+            val group_id: String = "group-id-random-" + new Random().nextInt(100000)
+            props.setProperty("group.id", group_id)
+            log.debug(s"group.id not set, creating random group id $group_id")
         }
         log.debug("creating Kafka consumer")
         val consumer = new KafkaConsumer[String, String](props)
 //        log.debug(s"subscribing to topic $topic")
 //        consumer.subscribe(Arrays.asList(topic))
-        log.debug(s"assigning partition $partition")
         val topic_partition = new TopicPartition(topic, partition)
-//        consumer.assign(Arrays.asList(partition))
+        log.debug(s"assigning partition $partition")
         consumer.assign(Arrays.asList(topic_partition))
+//        consumer.assign(Arrays.asList(partition))
         val latest_offset = consumer.position(topic_partition)
 //    }
 
@@ -109,8 +119,10 @@ class CheckKafka(val broker_list: String = "localhost:9200", val topic: String =
                 msg2 = record.value()
             }
         }
-        assert(msg != msg2)
-        println("successfully returned msg")
+         log.debug(s"message returned: $msg2")
+         log.debug(s"message expected: $msg")
+        assert(msg.equals(msg2))
+        println("OK: successfully returned msg by Kafka")
 //    }
 
 }
