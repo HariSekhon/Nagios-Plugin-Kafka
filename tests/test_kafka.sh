@@ -33,6 +33,7 @@ KAFKA_HOST="${KAFKA_HOST##*/}"
 KAFKA_HOST="${KAFKA_HOST%%:*}"
 export KAFKA_HOST
 
+export ZOOKEEPER_PORT="${ZOOKEEPER_PORT:-2181}"
 export KAFKA_PORT="${KAFKA_PORT:-9092}"
 
 # TODO: latest container 2.11_0.10 doesn't work yet, no leader takes hold
@@ -56,7 +57,7 @@ test_kafka(){
     travis_sample || continue
     echo "Setting up Apache Kafka $version test container"
     hr
-    launch_container "$DOCKER_IMAGE:$version" "$DOCKER_CONTAINER" $KAFKA_PORT
+    launch_container "$DOCKER_IMAGE:$version" "$DOCKER_CONTAINER" $KAFKA_PORT $ZOOKEEPER_PORT
     hr
     echo "creating Kafka test topic"
     docker exec -ti "$DOCKER_CONTAINER" kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic "$KAFKA_TOPIC" || :
