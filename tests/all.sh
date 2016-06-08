@@ -18,9 +18,9 @@ set -euo pipefail
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "
-# ========================== #
-# Running Nagios Plugins Kafka
-# ========================== #
+# =============================== #
+# Running Nagios Plugin Kafka ALL
+# =============================== #
 "
 
 cd "$srcdir/..";
