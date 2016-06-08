@@ -62,7 +62,7 @@ test_kafka(){
 
     hr
     # 'scala' command not found on Travis CI
-    java -jar target/scala-*/check_kafka-assembly-*.jar com.linkedin.harisekhon.CheckKafka -H $HOST -P $KAFKA_PORT
+    java -jar target/scala-*/check_kafka-assembly-*.jar -H $HOST -P $KAFKA_PORT
     hr
     delete_container
     echo
