@@ -13,8 +13,9 @@
 
 .PHONY: make
 make:
-	make lib
+	#make lib
 	sbt clean assembly
+	cp -av target/scala-*/*.jar .
 
 .PHONY: lib
 lib:
@@ -26,6 +27,7 @@ lib:
 clean:
 	cd lib && mvn clean
 	sbt clean
+	rm -f check_kafka*.jar
 
 .PHONY: update
 update:
