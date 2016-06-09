@@ -31,7 +31,7 @@ echo "
 # TODO: latest container 2.11_0.10 doesn't work yet, no leader takes hold
 #export KAFKA_VERSIONS="2.11_0.10 2.11_0.10 latest"
 export KAFKA_VERSIONS="${@:-latest 2.10_0.8 2.11_0.8 2.10_0.9 2.11_0.9}"
-# TODO: remove this
+# TODO: hangs on 0.8, fix later
 export KAFKA_VERSIONS="${@:-2.10_0.9}"
 
 KAFKA_HOST="${DOCKER_HOST:-${KAFKA_HOST:-${HOST:-localhost}}}"
