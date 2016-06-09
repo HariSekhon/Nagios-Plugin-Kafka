@@ -17,4 +17,4 @@
 
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-exec java -jar "$srcdir"/check_kafka*.jar $@
+exec java -jar "$srcdir"/check_kafka.jar $@
