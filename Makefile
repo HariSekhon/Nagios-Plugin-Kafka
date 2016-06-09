@@ -12,7 +12,7 @@
 #
 
 .PHONY: make
-make:
+build:
 	#make lib
 	sbt clean assembly
 	cp -av target/scala-*/*.jar check_kafka.jar
