@@ -21,7 +21,7 @@ scalaVersion := "2.10.4"
 
 mainClass := Some("com.linkedin.harisekhon.CheckKafka")
 
-unmanagedBase := baseDirectory.value / "lib/target"
+//unmanagedBase := baseDirectory.value / "lib/target"
 
 libraryDependencies ++= Seq (
     "org.apache.kafka" % "kafka_2.10" % "0.9.0.1",
