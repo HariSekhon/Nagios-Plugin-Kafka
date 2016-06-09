@@ -34,6 +34,11 @@ export KAFKA_VERSIONS="${@:-latest 2.10_0.8 2.11_0.8 2.10_0.9 2.11_0.9}"
 # TODO: hangs on 0.8, fix later
 export KAFKA_VERSIONS="${@:-2.10_0.9}"
 
+if ! is_docker_available; then
+    echo 'WARNING: Docker not found, skipping Kafka checks!!!'
+    exit 0
+fi
+
 KAFKA_HOST="${DOCKER_HOST:-${KAFKA_HOST:-${HOST:-localhost}}}"
 KAFKA_HOST="${KAFKA_HOST##*/}"
 KAFKA_HOST="${KAFKA_HOST%%:*}"
