@@ -63,16 +63,16 @@ class CheckKafka(
     props.put("bootstrap.servers", broker_list)
     props.put("client.id", "CheckKafka")
     props put("request.required.acks", required_acks)
-    props.put("timeout.ms", "5000") // 5 secs for ISR acks
-    props.put("metadata.fetch.timeout.ms", "1000") // 1 sec for metadata on topic connect
-    props.put("consumer.timeout.ms", "1000") // msg must be available within this window
-    props.put("socket.timeout.ms", "1000")
-    props.put("request.timeout.ms", "1000")
-    props.put("reconnect.backoff.ms", "0")
-    props.put("retry.backoff.ms", "0")
-    props.put("session.timeout.ms", "900")
-    props.put("fetch.max.wait.ms", "900")
-    props.put("heartbeat.interval.ms", "100")
+//    props.put("timeout.ms", "5000") // 5 secs for ISR acks
+//    props.put("metadata.fetch.timeout.ms", "1000") // 1 sec for metadata on topic connect
+//    props.put("consumer.timeout.ms", "1000") // msg must be available within this window
+//    props.put("socket.timeout.ms", "1000")
+//    props.put("request.timeout.ms", "1000")
+//    props.put("reconnect.backoff.ms", "0")
+//    props.put("retry.backoff.ms", "0")
+//    props.put("session.timeout.ms", "900")
+//    props.put("fetch.max.wait.ms", "900")
+//    props.put("heartbeat.interval.ms", "100")
     props.put("key.serializer",   "org.apache.kafka.common.serialization.StringSerializer")
     props.put("key.deserializer",   "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
@@ -100,7 +100,7 @@ class CheckKafka(
     consumer.assign(Arrays.asList(topic_partition))
     //        consumer.assign(Arrays.asList(partition))
     // not connected to port so no conn refused at this point
-    // loops from here indefinitely
+    // loops from here indefinitely if connection refused
     val latest_offset = consumer.position(topic_partition)
 //    }
 
