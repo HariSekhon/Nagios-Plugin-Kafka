@@ -20,10 +20,9 @@ jdk:
 #  - openjdk6
 
 scala:
-  # no dep available for org.elasticsearch#elasticsearch-spark_2.9.3;2.1.0.Beta4
-  #- 2.9.3
+  - 2.9.3
   - 2.10.4
-  #- 2.11.2
+  - 2.11.2
 
 # This will follow make to ensure that we have built the Java submodule library required as an SBT unmanaged dep
 before_install:
