@@ -35,7 +35,9 @@ import java.text.SimpleDateFormat
 object CheckKafka extends App {
     val check_kafka = new CheckKafka(
                                      broker_list = "192.168.99.100:9092",
-                                     topic = "nagios-plugin-kafka-test"
+                                     topic = "nagios-plugin-kafka-test",
+                                     partition = 0,
+                                     acks = "-1"
                                      )
     check_kafka.run()
 }
@@ -44,7 +46,7 @@ class CheckKafka(
         val broker_list: String = "localhost:9092",
         val topic: String = "test",
         val partition: Int = 0,
-        // change default to -1 to ensure all ISRs have written msg
+        // ensure all ISRs have written msg
         val acks: String = "-1"
                 ){
 
@@ -165,15 +167,22 @@ class CheckKafka(
         var msg2: String = null
         for(record: ConsumerRecord[String, String] <- records){
             val record_topic = record.topic()
-            log.debug(s"found message with topic $record_topic")
+            val value = record.value()
+            log.debug(s"found message, topic '$record_topic', value = '$value'")
             assert(topic.equals(record_topic))
-            if(msg.equals(record.value())){
-                msg2 = record.value()
+            if(msg.equals(value)){
+                msg2 = value
             }
         }
         log.debug(s"message returned: $msg2")
         log.debug(s"message expected: $msg")
-        assert(msg.equals(msg2))
+        if(msg2 == null) {
+            println("CRITICAL: message not returned by Kafka")
+            System.exit(2)
+        } else if(!msg.equals(msg2)){
+            println("CRITICAL: message returned does not equal message sent!")
+            System.exit(2)
+        }
     }
 
 }
