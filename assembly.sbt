@@ -29,7 +29,7 @@ mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
     case PathList("com", "google", "common", "base", p)                                         => MergeStrategy.first
     //case PathList("org", "apache", "commons", "beanutils", p)                                 => MergeStrategy.first
     //case PathList("org", "apache", "commons", "beanutils", "converters", p)                   => MergeStrategy.first
-    //case PathList("org", "apache", "commons", "beanutils", xs @ _*)                             => MergeStrategy.first
+    //case PathList("org", "apache", "commons", "beanutils", xs @ _*)                           => MergeStrategy.first
     case PathList("org", "apache", "commons", p @ _*)                                           => MergeStrategy.first
     // startsWith / endsWith doesn't work for this one
     case PathList("org", "apache", "hadoop", p @ _*)    if p.contains("package-info.class")     => MergeStrategy.first
