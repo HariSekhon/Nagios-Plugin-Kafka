@@ -15,7 +15,7 @@
 build:
 	#make lib
 	sbt clean assembly
-	cp -av target/scala-*/*.jar check_kafka.jar
+	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 .PHONY: lib
 lib:
@@ -27,7 +27,7 @@ lib:
 clean:
 	cd lib && mvn clean
 	sbt clean
-	rm -f check_kafka*.jar
+	rm -f check_kafka.jar
 
 .PHONY: update
 update:
