@@ -4,7 +4,7 @@
 //
 //  vim:ts=4:sts=4:sw=4:et
 //
-//  https://github.com/harisekhon/spark-apps
+//  https://github.com/harisekhon/nagios-plugin-kafka
 //
 //  License: see accompanying Hari Sekhon LICENSE file
 //
