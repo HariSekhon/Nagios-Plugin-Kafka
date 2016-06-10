@@ -35,6 +35,13 @@ update:
 	git submodule update --init
 	make
 
+.PHONY: update-submodules
+update-submodules:
+	git submodule update --init --recursive
+.PHONY: updatem
+updatem:
+	make update-submodules
+
 # useful for quicker compile testing
 .PHONY: p
 p:
