@@ -17,4 +17,9 @@
 
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-exec java -jar "$srcdir"/check_kafka.jar $@
+if [ ! -f "$srcdir/check_kafka.jar" ]; then
+    echo "UNKNOWN: check_kafka.jar is missing, did you forget to build the project?"
+    exit 3
+fi
+
+exec java -jar "$srcdir/check_kafka.jar" $@
