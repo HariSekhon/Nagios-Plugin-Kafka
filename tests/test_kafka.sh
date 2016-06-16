@@ -50,7 +50,7 @@ export KAFKA_PORT="${KAFKA_PORT:-9092}"
 export DOCKER_IMAGE="harisekhon/kafka"
 export DOCKER_CONTAINER="nagios-plugin-kafka-test"
 
-export KAFKA_TOPIC="nagios-plugin-kafka-test"
+export KAFKA_TOPIC="nagios-plugins-kafka-test"
 
 # needs to be longer than 10 to allow Kafka to settle so topic creation works
 startupwait=20
