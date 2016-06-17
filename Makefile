@@ -13,13 +13,13 @@
 
 .PHONY: make
 build:
-	#make lib
+	make lib
 	sbt clean assembly
 	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 .PHONY: lib
 lib:
-	git submodule update --init
+	#git submodule update --init
 	cd lib && mvn clean package
 	sbt eclipse || :
 
