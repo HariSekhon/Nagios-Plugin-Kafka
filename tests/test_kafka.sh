@@ -48,7 +48,7 @@ export ZOOKEEPER_PORT="${ZOOKEEPER_PORT:-2181}"
 export KAFKA_PORT="${KAFKA_PORT:-9092}"
 
 export DOCKER_IMAGE="harisekhon/kafka"
-export DOCKER_CONTAINER="nagios-plugin-kafka-test"
+export DOCKER_CONTAINER="nagios-plugins-kafka-test"
 
 export KAFKA_TOPIC="nagios-plugins-kafka-test"
 
