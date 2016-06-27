@@ -19,7 +19,7 @@ build:
 
 .PHONY: lib
 lib:
-	#git submodule update --init
+	git submodule update --init
 	cd lib && mvn clean package
 	sbt eclipse || :
 
@@ -32,7 +32,7 @@ clean:
 .PHONY: update
 update:
 	git pull
-	git submodule update --init
+	#git submodule update --init
 	make
 
 .PHONY: update-submodules
@@ -48,8 +48,7 @@ p:
 	make package
 .PHONY: package
 package:
-	git submodule update --init
-	cd lib && mvn clean package
+	make lib
 	sbt package
 
 .PHONY: test
