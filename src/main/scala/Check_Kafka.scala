@@ -13,11 +13,12 @@
 //  https://www.linkedin.com/in/harisekhon
 //
 
-package com.linkedin.harisekhon
+package com.linkedin.harisekhon.kafka
 
 //import com.google.common.io.Resources
 
-//import com.linkedin.harisekhon.Utils._
+import com.linkedin.harisekhon.CLI
+import com.linkedin.harisekhon.Utils._
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{KafkaConsumer, ConsumerRecord, ConsumerRecords}
@@ -34,15 +35,15 @@ import java.text.SimpleDateFormat
 
 object CheckKafka extends App {
     val check_kafka = new CheckKafka(
-                                     broker_list = "192.168.99.100:9092",
-                                     topic = "nagios-plugin-kafka-test",
-                                     partition = 0,
-                                     acks = "-1"
-                                     )
+        broker_list = "192.168.99.100:9092",
+        topic = "nagios-plugin-kafka-test",
+        partition = 0,
+        acks = "-1"
+    )
     check_kafka.run()
 }
 
-class CheckKafka(
+class CheckKafka (
         val broker_list: String = "localhost:9092",
         val topic: String = "test",
         val partition: Int = 0,
@@ -115,7 +116,7 @@ class CheckKafka(
 
 
     def run(): Unit = {
-        val start = System.currentTimeMillis()
+        val start_time = System.currentTimeMillis()
         subscribe(topic)
         val start_write = System.currentTimeMillis()
         produce(topic, msg)
@@ -123,11 +124,13 @@ class CheckKafka(
         // unless perhaps there are a lot of NTPd time steps to bring time back inline, but anyway that shouldn't be
         // a regular occurrence that affects this program
         val write_time = (System.currentTimeMillis() - start_write) / 1000.0
-        val start_read = System.currentTimeMillis()
+        val read_start_time = System.currentTimeMillis()
         consume(topic)
-        val read_time = (System.currentTimeMillis() - start_read) / 1000.0
-        val total_time = (System.currentTimeMillis() - start) / 1000.0
-        println(s"OK: Kafka broker successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
+        val end_time = System.currentTimeMillis()
+        val read_time = (end_time - read_start_time) / 1000.0
+        val total_time = (end_time - start_time) / 1000.0
+        val plural = if (broker_list.split("\\s+,\\s+").length > 1) "s"  else ""
+        println(s"OK: Kafka broker${plural} successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
     }
 
     def subscribe(topic: String = topic): Unit = {
