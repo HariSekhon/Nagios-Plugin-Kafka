@@ -19,7 +19,7 @@ version := "0.1.0"
 
 scalaVersion := "2.10.4"
 
-mainClass := Some("com.linkedin.harisekhon.CheckKafka")
+mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 
 unmanagedBase := baseDirectory.value / "lib/target"
 
