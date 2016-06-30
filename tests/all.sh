@@ -17,6 +17,8 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+bash-tools/all.sh
+
 echo "
 # =============================== #
 # Running Nagios Plugin Kafka ALL
@@ -28,5 +30,3 @@ cd "$srcdir/..";
 for script in $(find tests -name 'test*.sh'); do
     $script
 done
-
-bash-tools/all.sh
