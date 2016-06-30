@@ -43,16 +43,16 @@ object CheckKafka extends App {
     check_kafka.run()
 }
 
-class CheckKafka (
-        val broker_list: String = "localhost:9092",
-        val topic: String = "test",
-        val partition: Int = 0,
-        // ensure all ISRs have written msg
-        val acks: String = "-1"
-                ){
+class CheckKafka(
+                        val broker_list: String = "localhost:9092",
+                            val topic: String = "test",
+                        val partition: Int = 0,
+                        // ensure all ISRs have written msg
+                        val acks: String = "-1"
+                ) {
 
     val log = Logger.getLogger("CheckKafka")
-     // set in log4j.properties now
+    // set in log4j.properties now
 //    log.setLevel(Level.DEBUG)
 
     val uuid = java.util.UUID.randomUUID.toString
@@ -111,9 +111,8 @@ class CheckKafka (
     producer_props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
     log.debug("creating Kafka producer")
-//    val producer: KafkaProducer[String, String] = new KafkaProducer[String, String](props)
+    //    val producer: KafkaProducer[String, String] = new KafkaProducer[String, String](props)
     val producer = new KafkaProducer[String, String](producer_props)
-
 
     def run(): Unit = {
         val start_time = System.currentTimeMillis()
@@ -129,7 +128,7 @@ class CheckKafka (
         val end_time = System.currentTimeMillis()
         val read_time = (end_time - read_start_time) / 1000.0
         val total_time = (end_time - start_time) / 1000.0
-        val plural = if (broker_list.split("\\s+,\\s+").length > 1) "s"  else ""
+        val plural = if (broker_list.split("\\s+,\\s+").length > 1) "s" else ""
         println(s"OK: Kafka broker${plural} successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
     }
 
@@ -173,21 +172,21 @@ class CheckKafka (
         log.debug(s"consumed record count = $consumed_record_count")
         assert(consumed_record_count != 0)
         var msg2: String = null
-        for(record: ConsumerRecord[String, String] <- records){
+        for (record: ConsumerRecord[String, String] <- records) {
             val record_topic = record.topic()
             val value = record.value()
             log.debug(s"found message, topic '$record_topic', value = '$value'")
             assert(topic.equals(record_topic))
-            if(msg.equals(value)){
+            if (msg.equals(value)) {
                 msg2 = value
             }
         }
         log.debug(s"message returned: $msg2")
         log.debug(s"message expected: $msg")
-        if(msg2 == null) {
+        if (msg2 == null) {
             println("CRITICAL: message not returned by Kafka")
             System.exit(2)
-        } else if(!msg.equals(msg2)){
+        } else if (!msg.equals(msg2)) {
             println("CRITICAL: message returned does not equal message sent!")
             System.exit(2)
         }
