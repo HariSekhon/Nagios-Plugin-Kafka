@@ -147,8 +147,8 @@ class CheckKafka(
     def produce(topic: String = topic, msg: String = msg): Unit = {
         //        InputStream props = Resources.getResource("file.properties").openStream()
 //        try{
-        log.debug("sending message")
-        producer.send(new ProducerRecord[String, String](topic, msg)) // key and partition optional
+        log.debug(s"sending message to topic $topic partition $partition")
+        producer.send(new ProducerRecord[String, String](topic, partition, id, msg)) // key and partition optional
         log.debug("flushing")
         producer.flush()
         log.debug("closing producer")
