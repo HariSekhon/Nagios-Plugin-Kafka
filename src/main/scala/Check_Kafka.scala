@@ -17,12 +17,17 @@ package com.linkedin.harisekhon.kafka
 
 //import com.google.common.io.Resources
 
+import java.io.File
+import java.nio.file.Paths
+
 import com.linkedin.harisekhon.CLI
 import com.linkedin.harisekhon.Utils._
-
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
-import org.apache.kafka.clients.consumer.{KafkaConsumer, ConsumerRecord, ConsumerRecords}
+import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.TopicPartition
+//import org.apache.kafka.common.protocol.SecurityProtocol.PLAINTEXT
+//import org.apache.kafka.common.protocol.SecurityProtocol.SASL_PLAINTEXT
+//import org.apache.kafka.common.protocol.SecurityProtocol.SASL_SSL
 
 import scala.util.Random
 //import java.io.InputStream
@@ -38,7 +43,11 @@ object CheckKafka extends App {
         broker_list = "192.168.99.100:9092",
         topic = "nagios-plugin-kafka-test",
         partition = 0,
-        acks = "-1"
+        acks = "-1",
+        // TODO: SASL_PLAINTEXT, SASL_SSL protocol testing
+//        security_protocol = "SASL_PLAINTEXT",
+        security_protocol = "PLAINTEXT",
+        jaas_config = Option(null)
     )
     check_kafka.run()
 }
@@ -48,12 +57,46 @@ class CheckKafka(
                             val topic: String = "test",
                         val partition: Int = 0,
                         // ensure all ISRs have written msg
-                        val acks: String = "-1"
+                        val acks: String = "-1",
+                        val security_protocol: String = "PLAINTEXT",
+                        var jaas_config: Option[String] = None
                 ) {
 
     val log = Logger.getLogger("CheckKafka")
     // set in log4j.properties now
 //    log.setLevel(Level.DEBUG)
+
+    var jar = new File(classOf[CheckKafka].getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+    if(jar.toString.contains("/target/")){
+       jar = jar.getParentFile().getParentFile()
+    }
+    val jaas_default_config = Paths.get(jar.getParentFile().getAbsolutePath(), "kafka_cli_jaas.conf").toString;
+    val jaas_prop = System.getProperty("java.security.auth.login.config")
+    if(! jaas_config.isEmpty) {
+        log.info(s"using JAAS config file arg '$jaas_config'")
+    } else if (jaas_prop != null) {
+        val jaas_file = new File(jaas_prop)
+        if (jaas_file.exists() && jaas_file.isFile()) {
+            jaas_config = Option(jaas_prop)
+            log.info(s"using JAAS config file from System property java.security.auth.login.config = '$jaas_config'")
+        } else {
+            log.warn(s"JAAS path specified in System property java.security.auth.login.config = '$jaas_prop' does not exist!")
+        }
+    }
+    if(jaas_config.isEmpty){
+        val jaas_default_file = new File(jaas_default_config)
+        if(jaas_default_file.exists() && jaas_default_file.isFile()){
+            log.info(s"using default JaaS config file '$jaas_default_config'")
+            jaas_config = Option(jaas_default_config)
+        } else {
+            log.warn("cannot find default JAAS file and none supplied")
+        }
+    }
+    if(jaas_config.isDefined) {
+        System.setProperty("java.security.auth.login.config", jaas_config.get)
+    } else {
+        log.warn("no JAAS config defined")
+    }
 
     val uuid = java.util.UUID.randomUUID.toString
     val epoch = System.currentTimeMillis()
@@ -76,6 +119,7 @@ class CheckKafka(
     // old
 //    consumer_props.put("metadata.broker.list", broker_list)
     consumer_props.put("bootstrap.servers", broker_list)
+    consumer_props.put("security.protocol", security_protocol)
 
     // works without this
     val group_id: String = s"$uuid, $date"
@@ -107,6 +151,7 @@ class CheckKafka(
     producer_props.put("client.id", "CheckKafka")
 //    producer_props put("request.required.acks", required_acks)
     producer_props put("acks", acks)
+    producer_props.put("security.protocol", security_protocol)
     producer_props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
     producer_props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
