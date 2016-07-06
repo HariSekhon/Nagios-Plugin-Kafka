@@ -63,7 +63,9 @@ test_kafka(){
     hr
     echo "creating Kafka test topic"
     docker exec -ti "$DOCKER_CONTAINER" kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic "$KAFKA_TOPIC" || :
-
+    if [ -n "${NOTESTS:-}" ]; then
+        return 0
+    fi
     hr
     # 'scala' command not found on Travis CI
     #java -jar target/scala-*/check_kafka-assembly-*.jar -H $HOST -P $KAFKA_PORT
