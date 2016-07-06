@@ -22,6 +22,7 @@ import java.nio.file.Paths
 
 import com.linkedin.harisekhon.CLI
 import com.linkedin.harisekhon.Utils._
+import org.apache.kafka.common.KafkaException
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.TopicPartition
@@ -42,19 +43,41 @@ import java.text.SimpleDateFormat
 
 // TODO: temporary CLI args, replace with full CLI inheritence
 object CheckKafka extends App {
+    if(args.length < 2){
+        println("usage: check_kafka <brokers> <topic>")
+        System.exit(3)
+    }
+    // TODO: validate_hostport, must include port
     val brokers = args(0)
     val topic = args(1)
-    val check_kafka = new CheckKafka(
-        brokers = brokers, // "192.168.99.100:9092",
-        topic = topic, // "nagios-plugin-kafka-test",
-        partition = 0,
-        acks = "-1",
-        // TODO: SASL_PLAINTEXT, SASL_SSL protocol testing
-        //        security_protocol = "SASL_PLAINTEXT",
-        security_protocol = "PLAINTEXT",
-        jaas_config = Option(null)
-    )
-    check_kafka.run()
+    try {
+        // raises
+        // Exception in thread "main" org.apache.kafka.common.KafkaException: Failed to construct kafka consumer
+        // ...
+        // org.apache.kafka.common.config.ConfigException: Invalid url in bootstrap.servers: 192.168.99.100
+        val check_kafka = new CheckKafka(
+            brokers = brokers, // "192.168.99.100:9092",
+            topic = topic, // "nagios-plugin-kafka-test",
+            partition = 0,
+            acks = "-1",
+            // TODO: SASL_PLAINTEXT, SASL_SSL protocol testing
+            //        security_protocol = "SASL_PLAINTEXT",
+            security_protocol = "PLAINTEXT",
+            jaas_config = Option(null)
+        )
+        check_kafka.run()
+    } catch {
+        case e: org.apache.kafka.common.KafkaException => {
+            println("Caught Kafka Exception: ")
+            e.printStackTrace
+            System.exit(2)
+        }
+        case _: Throwable => {
+            println("Unexpected exception:")
+            e.printStackTrace
+            System.exit(2)
+        }
+    }
 }
 
 class CheckKafka(
