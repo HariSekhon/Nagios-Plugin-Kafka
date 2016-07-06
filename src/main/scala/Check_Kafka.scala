@@ -75,7 +75,7 @@ class CheckKafka(
     } else {
         srcpath
     }
-    val jaas_default_config = Paths.get(jar.getParentFile().getAbsolutePath(), DEFAULT_JAAS_FILE).toString
+    val jaas_default_config = Paths.get(jar.getParentFile().getAbsolutePath(), "conf", DEFAULT_JAAS_FILE).toString
     val jaas_prop = System.getProperty("java.security.auth.login.config")
     if(! jaas_config.isEmpty) {
         log.info(s"using JAAS config file arg '$jaas_config'")
