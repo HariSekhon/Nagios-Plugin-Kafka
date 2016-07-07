@@ -69,10 +69,10 @@ object CheckKafka extends App {
     } catch {
         case e: org.apache.kafka.common.KafkaException => {
             println("Caught Kafka Exception: ")
-            e.printStackTrace
+            e.printStackTrace()
             System.exit(2)
         }
-        case _: Throwable => {
+        case e: Throwable => {
             println("Unexpected exception:")
             e.printStackTrace
             System.exit(2)
