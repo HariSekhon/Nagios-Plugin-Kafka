@@ -1,0 +1,161 @@
+<!--
+
+  vim:ts=2:sts=2:sw=2:et
+
+  Author: Hari Sekhon
+  Date: 2016-07-07 11:02:14 +0100 (Thu, 07 Jul 2016)
+
+  https://github.com/harisekhon/nagios-plugin-kafka
+
+  License: see accompanying Hari Sekhon LICENSE file
+
+  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help steer this or other code I publish
+
+  https://www.linkedin.com/in/harisekhon
+
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.linkedin.harisekhon</groupId>
+  <artifactId>check_kafka</artifactId>
+  <version>0.1</version>
+  <packaging>jar</packaging>
+
+  <name>check_kafka</name>
+  <url>http://github.com/harisekhon/nagios-plugin-kafka</url>
+
+  <properties>
+    <!-- stops build from using platform dependent encoding and therefore being non-portable -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- variables -->
+    <junit.version>4.12</junit.version>
+    <kafka.version>0.9.0.1</kafka.version>
+    <log4j.version>1.2.17</log4j.version>
+    <maven.shade.version>2.4.1</maven.shade.version>
+    <scala.mm.version>2.10</scala.mm.version>
+    <scala.version>2.10.6</scala.version>
+    <scalatest.version>2.2.1</scalatest.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>project.local</id>
+      <name>local</name>
+      <url>file:repo</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.linkedin.harisekhon</groupId>
+      <artifactId>utils</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_${scala.mm.version}</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatest</groupId>
+      <artifactId>scalatest_${scala.mm.version}</artifactId>
+      <version>${scalatest.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <compilerVersion>1.6</compilerVersion>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>scala-test-compile</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven.shade.version}</version>
+        <configuration>
+          <!-- put your configurations here -->
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Build an executable JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>com.linkedin.harisekhon.kafka.CheckKafka</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <!-- Need to compile Scala code -->
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>scala-compile-first</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-source</goal>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>scala-test-compile</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
