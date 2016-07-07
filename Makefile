@@ -27,7 +27,7 @@ mvn:
 .PHONY: lib
 lib:
 	git submodule update --init
-	cd lib && mvn clean package && mvn deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
+	cd lib && mvn clean package
 	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
 
 .PHONY: clean
