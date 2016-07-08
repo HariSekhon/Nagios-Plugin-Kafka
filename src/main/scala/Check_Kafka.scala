@@ -194,9 +194,6 @@ class CheckKafka(
     val producer_props = new Properties
     producer_props.put("bootstrap.servers", brokers)
     producer_props.put("client.id", "CheckKafka")
-    // unrecognized options
-//    producer_props.put("enable.auto.commit", "true");
-//    producer_props.put("auto.commit.interval.ms", "100");
     // old
     //    producer_props put("request.required.acks", required_acks)
     producer_props put("acks", acks)
