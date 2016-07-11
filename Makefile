@@ -76,3 +76,8 @@ test:
 .PHONY: run
 run:
 	sbt "run ${ARGS}"
+
+# make exec ARGS="<args>"
+.PHONY: exec
+exec:
+	mvn exec:java -Dexec.args="${ARGS}"
