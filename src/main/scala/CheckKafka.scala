@@ -15,33 +15,29 @@
 
 package com.linkedin.harisekhon.kafka
 
-//import com.google.common.io.Resources
+import com.linkedin.harisekhon.CLI
+import com.linkedin.harisekhon.Utils._
 
 import java.io.{File, InputStream, OutputStream, PipedInputStream, PipedOutputStream}
 import java.nio.file.Paths
+import java.text.SimpleDateFormat
+import java.util.{Arrays, Properties}
 
-import com.linkedin.harisekhon.CLI
-import com.linkedin.harisekhon.Utils._
+import sun.misc.IOUtils
+import sun.security.util.Resources
+
 import org.apache.kafka.common.KafkaException
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.TopicPartition
-import sun.misc.IOUtils
-import sun.security.util.Resources
 
-//import org.apache.kafka.common.protocol.SecurityProtocol.PLAINTEXT
-//import org.apache.kafka.common.protocol.SecurityProtocol.SASL_PLAINTEXT
-//import org.apache.kafka.common.protocol.SecurityProtocol.SASL_SSL
-
-import scala.util.Random
-
-//import java.io.InputStream
-import java.util.Properties
-import java.util.Arrays
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
+
 import collection.JavaConversions._
-import java.text.SimpleDateFormat
+
+import scala.util.Random
+import scala.collection.JavaConversions._
 
 // TODO: temporary CLI args, replace with full CLI class inheritance
 object CheckKafka extends App {
@@ -104,7 +100,6 @@ class CheckKafka(
                 ) {
 
     val log = Logger.getLogger("CheckKafka")
-    // log.setLevel(Level.DEBUG)
 
     if(consumer_props eq producer_props){
         throw new IllegalArgumentException("Consumer + Producer props should not be the same object")
@@ -156,7 +151,6 @@ class CheckKafka(
 
     val uuid = java.util.UUID.randomUUID.toString
     val epoch = System.currentTimeMillis()
-    // comes out the same whether specifying single, double or triple data digits
     val date = new SimpleDateFormat("yyyy-dd-MM HH:MM:ss.SSS Z").format(epoch)
     val id: String = s"Hari Sekhon check_kafka (scala) - random token=$uuid, $date"
 
@@ -166,7 +160,6 @@ class CheckKafka(
     val topic_partition = new TopicPartition(topic, partition)
     var last_offset: Long = 0
 
-//    val consumer_props = new Properties
     // TODO: try-with-resources here potentially
     val consumer_properties: InputStream = getClass.getResourceAsStream("/consumer.properties")
     if(consumer_properties == null) {
@@ -202,7 +195,6 @@ class CheckKafka(
     log.info("creating Kafka consumer")
     val consumer = new KafkaConsumer[String, String](consumer_props)
 
-//    val producer_props = new Properties
     val producer_properties: InputStream = getClass.getResourceAsStream("/producer.properties")
     if(producer_properties == null){
         log.error("could not find producer.properties file")
@@ -229,7 +221,6 @@ class CheckKafka(
     producer_props.load(producer_in)
 
     log.info("creating Kafka producer")
-    //    val producer: KafkaProducer[String, String] = new KafkaProducer[String, String](props)
     val producer = new KafkaProducer[String, String](producer_props)
 
     def run(): Unit = {
@@ -259,31 +250,23 @@ class CheckKafka(
 
     def subscribe(topic: String = topic): Unit = {
         // conflicts with partition assignment
-        //        log.debug(s"subscribing to topic $topic")
-        //        consumer.subscribe(Arrays.asList(topic))
+        // log.debug(s"subscribing to topic $topic")
+        // consumer.subscribe(Arrays.asList(topic))
         log.info(s"consumer assigning topic '$topic' partition '$partition'")
         consumer.assign(Arrays.asList(topic_partition))
-        //        consumer.assign(Arrays.asList(partition))
+        // consumer.assign(Arrays.asList(partition))
         // not connected to port so no conn refused at this point
-        // loops from here indefinitely if connection refused
+        // TODO: loops from here indefinitely if connection refused, find way to timeout or fail fast
         last_offset = consumer.position(topic_partition)
     }
 
     def produce(topic: String = topic, msg: String = msg): Unit = {
-        //        InputStream props = Resources.getResource("file.properties").openStream()
-        //        try{
         log.info(s"sending message to topic $topic partition $partition")
         producer.send(new ProducerRecord[String, String](topic, partition, id, msg)) // key and partition optional
         log.info("flushing")
         producer.flush()
         log.info("closing producer")
         producer.close() // blocks until msgs are sent
-        //        } catch(Throwable t){
-        //            println("%s", t.getStackTrace)
-        //        }
-        //        finally {
-        //            producer.close() // blocks until msgs are sent
-        //        }
     }
 
     def consume(topic: String = topic): Unit = {
