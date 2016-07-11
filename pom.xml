@@ -27,7 +27,7 @@
   <packaging>jar</packaging>
 
   <name>check_kafka</name>
-  <url>http://github.com/harisekhon/nagios-plugin-kafka</url>
+  <url>https://github.com/harisekhon/nagios-plugin-kafka</url>
 
   <properties>
 
