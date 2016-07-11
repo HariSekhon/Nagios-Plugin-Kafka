@@ -17,7 +17,7 @@ package com.linkedin.harisekhon.kafka
 
 //import com.google.common.io.Resources
 
-import java.io.{File, InputStream}
+import java.io.{File, InputStream, OutputStream, PipedInputStream, PipedOutputStream}
 import java.nio.file.Paths
 
 import com.linkedin.harisekhon.CLI
@@ -26,6 +26,7 @@ import org.apache.kafka.common.KafkaException
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.TopicPartition
+import sun.misc.IOUtils
 import sun.security.util.Resources
 
 //import org.apache.kafka.common.protocol.SecurityProtocol.PLAINTEXT
@@ -42,28 +43,41 @@ import org.apache.log4j.Logger
 import collection.JavaConversions._
 import java.text.SimpleDateFormat
 
-// TODO: temporary CLI args, replace with full CLI inheritance
+// TODO: temporary CLI args, replace with full CLI class inheritance
 object CheckKafka extends App {
     if(args.length < 2){
-        println("usage: check_kafka <brokers> <topic>")
+        println("usage: check_kafka <brokers> <topic> [<partition>]")
         System.exit(3)
     }
     // TODO: validate_hostport, must include port
-    val brokers = args(0)
+    // TODO: validate_int partition
+    val consumer_props = new Properties
+    val producer_props = new Properties
+    consumer_props.put("bootstrap.servers", args(0))
+    producer_props.put("bootstrap.servers", args(0))
     val topic = args(1)
+    val partition: Int =
+        if(args.length > 2) try {
+            Integer.parseInt(args(2))
+        } catch {
+            case e: NumberFormatException => {
+                println("Invalid argument for partition, must be an integer")
+                System.exit(3)
+                0 // appease type system
+            }
+        } else {
+            0
+        }
     try {
         // raises
         // Exception in thread "main" org.apache.kafka.common.KafkaException: Failed to construct kafka consumer
         // ...
         // org.apache.kafka.common.config.ConfigException: Invalid url in bootstrap.servers: 192.168.99.100
         val check_kafka = new CheckKafka(
-            brokers = brokers, // "192.168.99.100:9092",
-            topic = topic, // "nagios-plugin-kafka-test",
-            partition = 0,
-            acks = "-1",
-            // TODO: SASL_PLAINTEXT, SASL_SSL protocol testing
-            //        security_protocol = "SASL_PLAINTEXT",
-            security_protocol = "PLAINTEXT",
+            topic = topic,
+            partition = partition,
+            producer_props = producer_props,
+            consumer_props = consumer_props,
             jaas_config = Option(null)
         )
         check_kafka.run()
@@ -82,17 +96,19 @@ object CheckKafka extends App {
 }
 
 class CheckKafka(
-                    val brokers: String = "localhost:9092",
                     val topic: String = "test",
                     val partition: Int = 0,
-                    // ensure all ISRs have written msg
-                    val acks: String = "-1",
-                    val security_protocol: String = "PLAINTEXT",
+                    val consumer_props: Properties = new Properties,
+                    val producer_props: Properties = new Properties,
                     var jaas_config: Option[String] = None
                 ) {
 
     val log = Logger.getLogger("CheckKafka")
     // log.setLevel(Level.DEBUG)
+
+    if(consumer_props eq producer_props){
+        throw new IllegalArgumentException("Consumer + Producer props should not be the same object")
+    }
 
     val DEFAULT_JAAS_FILE = "kafka_cli_jaas.conf"
     val HDP_JAAS_PATH = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
@@ -150,19 +166,32 @@ class CheckKafka(
     val topic_partition = new TopicPartition(topic, partition)
     var last_offset: Long = 0
 
-    val consumer_props = new Properties
+//    val consumer_props = new Properties
     // TODO: try-with-resources here potentially
     val consumer_properties: InputStream = getClass.getResourceAsStream("/consumer.properties")
     if(consumer_properties == null) {
         log.error("could not find consumer.properties file")
         System.exit(2)
     }
+    val consumer_props_args = consumer_props.clone().asInstanceOf[Properties]
     consumer_props.load(consumer_properties)
     if(log.isDebugEnabled){
-        log.debug("Loaded Consumer Properties:")
+        log.debug("Loaded Consumer Properties from resource file:")
         consumer_props.foreach({case (k,v) => log.debug(s"  $k = $v")})
+        log.debug("Loading Consumer Property args:")
+        consumer_props_args.foreach({case (k,v) => log.debug(s"  $k = $v")})
     }
-    consumer_props.put("bootstrap.servers", brokers)
+    val consumer_in = new PipedInputStream
+    val consumer_out = new PipedOutputStream(consumer_in)
+    new Thread(
+        new Runnable(){
+            def run(): Unit = {
+                consumer_props_args.store(consumer_out, "")
+                consumer_out.close()
+            }
+        }
+    ).start()
+    consumer_props.load(consumer_in)
 
     // enforce unique group to make sure we are guaranteed to received our unique message back
     val group_id: String = s"$uuid, $date"
@@ -173,18 +202,31 @@ class CheckKafka(
     log.info("creating Kafka consumer")
     val consumer = new KafkaConsumer[String, String](consumer_props)
 
-    val producer_props = new Properties
+//    val producer_props = new Properties
     val producer_properties: InputStream = getClass.getResourceAsStream("/producer.properties")
     if(producer_properties == null){
         log.error("could not find producer.properties file")
         System.exit(2)
     }
+    val producer_props_args = producer_props.clone().asInstanceOf[Properties]
     producer_props.load(producer_properties)
     if(log.isDebugEnabled){
-        log.debug("Loaded Producer Properties:")
+        log.debug("Loaded Producer Properties from resource file:")
         producer_props.foreach({case (k,v) => log.debug(s"  $k = $v")})
+        log.debug("Loading Producer Property args:")
+        producer_props_args.foreach({case (k,v) => log.debug(s"  $k = $v")})
     }
-    producer_props.put("bootstrap.servers", brokers)
+    val producer_in = new PipedInputStream()
+    val producer_out = new PipedOutputStream(producer_in)
+    new Thread(
+        new Runnable(){
+            def run(): Unit = {
+                producer_props_args.store(producer_out, "")
+                producer_out.close()
+            }
+        }
+    ).start()
+    producer_props.load(producer_in)
 
     log.info("creating Kafka producer")
     //    val producer: KafkaProducer[String, String] = new KafkaProducer[String, String](props)
@@ -195,16 +237,23 @@ class CheckKafka(
         subscribe(topic)
         val start_write = System.currentTimeMillis()
         produce(topic, msg)
-        // if clock gets reset and this become negative I'm not handling it as that should be a super rare one time occurrence
-        // unless perhaps there are a lot of NTPd time steps to bring time back inline, but anyway that shouldn't be
-        // a regular occurrence that affects this program
+        // if clock gets reset and this become negative I'm not handling it as that should be a super rare one time
+        // occurrence unless perhaps there are a lot of NTPd time steps to bring time back inline, but anyway that
+        // shouldn't be a regular occurrence
         val write_time = (System.currentTimeMillis() - start_write) / 1000.0
         val read_start_time = System.currentTimeMillis()
         consume(topic)
         val end_time = System.currentTimeMillis()
         val read_time = (end_time - read_start_time) / 1000.0
         val total_time = (end_time - start_time) / 1000.0
-        val plural = if (brokers.split("\\s+,\\s+").length > 1) "s" else ""
+        val plural =
+            if (consumer_props.get("bootstrap.servers").isInstanceOf[String] &&
+                consumer_props.get("bootstrap.servers").asInstanceOf[String].split("\\s+,\\s+").length > 1)
+            {
+                "s"
+            } else {
+                ""
+            }
         println(s"OK: Kafka broker${plural} successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
     }
 
