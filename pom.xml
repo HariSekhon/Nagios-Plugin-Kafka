@@ -31,10 +31,8 @@
 
   <properties>
 
-    <!-- stops build from using platform dependent encoding and therefore being non-portable -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- variables -->
     <junit.version>4.12</junit.version>
     <kafka.version>0.9.0.1</kafka.version>
     <log4j.version>1.2.17</log4j.version>
@@ -128,7 +126,6 @@
         </executions>
       </plugin>
 
-      <!-- Build an executable JAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -144,7 +141,6 @@
         </configuration>
       </plugin>
 
-      <!-- Need to compile Scala code -->
       <plugin>
         <groupId>net.alchim31.maven</groupId>
         <artifactId>scala-maven-plugin</artifactId>
