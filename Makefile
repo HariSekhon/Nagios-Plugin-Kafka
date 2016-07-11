@@ -71,3 +71,8 @@ package:
 .PHONY: test
 test:
 	tests/all.sh
+
+# make run ARGS="<args>"
+.PHONY: run
+run:
+	sbt "run ${ARGS}"
