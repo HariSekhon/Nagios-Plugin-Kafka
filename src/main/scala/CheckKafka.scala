@@ -220,9 +220,6 @@ class CheckKafka(
         subscribe(topic)
         val start_write = System.currentTimeMillis()
         produce(topic, msg)
-        // if clock gets reset and this become negative I'm not handling it as that should be a super rare one time
-        // occurrence unless perhaps there are a lot of NTPd time steps to bring time back inline, but anyway that
-        // shouldn't be a regular occurrence
         val write_time = (System.currentTimeMillis() - start_write) / 1000.0
         val read_start_time = System.currentTimeMillis()
         consume(topic)
