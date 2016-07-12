@@ -23,20 +23,13 @@ import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.{Arrays, Properties}
 
-import sun.misc.IOUtils
-import sun.security.util.Resources
-
 import org.apache.kafka.common.KafkaException
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.TopicPartition
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
-import collection.JavaConversions._
-
-import scala.util.Random
 import scala.collection.JavaConversions._
 
 // TODO: temporary CLI args, replace with full CLI class inheritance
@@ -78,14 +71,14 @@ object CheckKafka extends App {
         )
         check_kafka.run()
     } catch {
-        case e: org.apache.kafka.common.KafkaException => {
+        case e: KafkaException => {
             println("Caught Kafka Exception: ")
-            e.printStackTrace
+            e.printStackTrace()
             System.exit(2)
         }
         case e: Throwable => {
             println("Caught unexpected Exception: ")
-            e.printStackTrace
+            e.printStackTrace()
             System.exit(2)
         }
     }
@@ -108,15 +101,15 @@ class CheckKafka(
     val DEFAULT_JAAS_FILE = "kafka_cli_jaas.conf"
     val HDP_JAAS_PATH = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
 
-    val srcpath = new File(classOf[CheckKafka].getProtectionDomain().getCodeSource().getLocation().toURI().getPath())
+    val srcpath = new File(classOf[CheckKafka].getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
     val jar = if (srcpath.toString.contains("/target/")) {
-        srcpath.getParentFile().getParentFile()
+        srcpath.getParentFile.getParentFile
     } else {
         srcpath
     }
-    val jaas_default_config = Paths.get(jar.getParentFile().getAbsolutePath(), "conf", DEFAULT_JAAS_FILE).toString
+    val jaas_default_config = Paths.get(jar.getParentFile.getAbsolutePath, "conf", DEFAULT_JAAS_FILE).toString
     val jaas_prop = System.getProperty("java.security.auth.login.config")
-    if (!jaas_config.isEmpty) {
+    if (jaas_config.nonEmpty) {
         log.info(s"using JAAS config file arg '$jaas_config'")
     } else if (jaas_prop != null) {
         val jaas_file = new File(jaas_prop)
@@ -143,7 +136,7 @@ class CheckKafka(
             log.warn("cannot find default JAAS file and none supplied")
         }
     }
-    if (!jaas_config.isEmpty) {
+    if (jaas_config.nonEmpty) {
         System.setProperty("java.security.auth.login.config", jaas_config.get)
     } else {
         log.warn("no JAAS config defined")
@@ -244,7 +237,7 @@ class CheckKafka(
             } else {
                 ""
             }
-        println(s"OK: Kafka broker${plural} successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
+        println(s"OK: Kafka broker$plural successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
     }
 
     def subscribe(topic: String = topic): Unit = {
