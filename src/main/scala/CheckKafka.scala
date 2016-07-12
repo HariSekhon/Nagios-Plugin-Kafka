@@ -143,7 +143,7 @@ class CheckKafka(
             log.warn("cannot find default JAAS file and none supplied")
         }
     }
-    if (jaas_config.isDefined) {
+    if (!jaas_config.isEmpty) {
         System.setProperty("java.security.auth.login.config", jaas_config.get)
     } else {
         log.warn("no JAAS config defined")
