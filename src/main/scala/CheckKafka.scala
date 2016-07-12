@@ -65,7 +65,7 @@ object CheckKafka extends App {
             0
         }
     try {
-        // raises
+        // without port suffix raises the following exception, which we intend to catch and print nicely
         // Exception in thread "main" org.apache.kafka.common.KafkaException: Failed to construct kafka consumer
         // ...
         // org.apache.kafka.common.config.ConfigException: Invalid url in bootstrap.servers: 192.168.99.100
@@ -80,11 +80,11 @@ object CheckKafka extends App {
     } catch {
         case e: org.apache.kafka.common.KafkaException => {
             println("Caught Kafka Exception: ")
-            e.printStackTrace()
+            e.printStackTrace
             System.exit(2)
         }
         case e: Throwable => {
-            println("Unexpected exception:")
+            println("Caught unexpected Exception: ")
             e.printStackTrace
             System.exit(2)
         }
@@ -160,7 +160,6 @@ class CheckKafka(
     val topic_partition = new TopicPartition(topic, partition)
     var last_offset: Long = 0
 
-    // TODO: try-with-resources here potentially
     val consumer_properties: InputStream = getClass.getResourceAsStream("/consumer.properties")
     if(consumer_properties == null) {
         log.error("could not find consumer.properties file")
