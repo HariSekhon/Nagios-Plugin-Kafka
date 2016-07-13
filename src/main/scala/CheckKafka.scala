@@ -67,7 +67,7 @@ object CheckKafka extends App {
             partition = partition,
             producer_props = producer_props,
             consumer_props = consumer_props,
-            jaas_config = Option(null)
+            jaas_config = None
         )
         check_kafka.run()
     } catch {
@@ -114,7 +114,7 @@ class CheckKafka(
     } else if (jaas_prop != null) {
         val jaas_file = new File(jaas_prop)
         if (jaas_file.exists() && jaas_file.isFile()) {
-            jaas_config = Option(jaas_prop)
+            jaas_config = Some(jaas_prop)
             log.info(s"using JAAS config file from System property java.security.auth.login.config = '$jaas_config'")
         } else {
             log.warn(s"JAAS path specified in System property java.security.auth.login.config = '$jaas_prop' does not exist!")
@@ -124,14 +124,14 @@ class CheckKafka(
         val hdp_jaas_file = new File(HDP_JAAS_PATH)
         if (hdp_jaas_file.exists() && hdp_jaas_file.isFile()) {
             log.info(s"found HDP Kafka kerberos config '$HDP_JAAS_PATH'")
-            jaas_config = Option(HDP_JAAS_PATH)
+            jaas_config = Some(HDP_JAAS_PATH)
         }
     }
     if (jaas_config.isEmpty) {
         val jaas_default_file = new File(jaas_default_config)
         if (jaas_default_file.exists() && jaas_default_file.isFile()) {
             log.info(s"using default JaaS config file '$jaas_default_config'")
-            jaas_config = Option(jaas_default_config)
+            jaas_config = Some(jaas_default_config)
         } else {
             log.warn("cannot find default JAAS file and none supplied")
         }
