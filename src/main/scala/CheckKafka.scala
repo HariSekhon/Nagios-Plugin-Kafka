@@ -234,7 +234,7 @@ class CheckKafka(
             } else {
                 ""
             }
-        println(s"OK: Kafka broker$plural successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s")
+        println(s"OK: Kafka broker$plural successfully returned unique message, write_time=${write_time}s, read_time=${read_time}s, total_time=${total_time}s | write_time=${write_time}s read_time=${read_time}s total_time=${total_time}s")
     }
 
     def subscribe(topic: String = topic): Unit = {
