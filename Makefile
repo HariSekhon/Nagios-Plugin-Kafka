@@ -74,7 +74,7 @@ package:
 test:
 	tests/all.sh
 
-# make run ARGS="<args>"
+# make run ARGS="192.168.99.100:9092 test"
 .PHONY: run
 run:
 	sbt "run ${ARGS}"
