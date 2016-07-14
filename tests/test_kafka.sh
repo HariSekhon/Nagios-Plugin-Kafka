@@ -59,7 +59,7 @@ test_kafka(){
     local version="$1"
     echo "Setting up Apache Kafka $version test container"
     hr
-    local DOCKER_OPTS="-e ADVERTISED_HOSTNAME=$HOST"
+    local DOCKER_OPTS="-e ADVERTISED_HOSTNAME=$KAFKA_HOST"
     launch_container "$DOCKER_IMAGE:$version" "$DOCKER_CONTAINER" $KAFKA_PORT $ZOOKEEPER_PORT
     hr
     echo "creating Kafka test topic"
