@@ -11,6 +11,8 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
+ARGS=localhost:9092 test
+
 .PHONY: build
 build:
 	make lib
