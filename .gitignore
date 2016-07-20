@@ -1,10 +1,11 @@
 project/
 repo/
 target/
-dependency-reduced-pom.xml
+.idea/
+.sonar/
 .classpath
-.idea
 .project
 .worksheet
 *.sc
 *~
+dependency-reduced-pom.xml
