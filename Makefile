@@ -20,19 +20,24 @@ build:
 
 .PHONY: sbt
 sbt:
-	cd lib && make sbt
+	make lib-sbt
 	sbt clean assembly
 	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 .PHONY: mvn
 mvn:
-	cd lib && make mvn
+	make lib-mvn
 	cd lib && mvn deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
 	mvn clean package
 	cp -av target/check_kafka-*.jar check_kafka.jar
 
+.PHONY: lib-mvn
+lib-mvn:
+	git submodule update --init
+	cd lib && make mvn
+
 .PHONY: lib
-lib:
+lib-sbt:
 	git submodule update --init
 	cd lib && make sbt
 	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
