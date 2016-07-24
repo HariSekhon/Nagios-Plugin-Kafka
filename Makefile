@@ -27,15 +27,13 @@ sbt:
 .PHONY: mvn
 mvn:
 	make lib-mvn
-	cd lib && ./mvnw deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
 	./mvnw clean package
 	cp -av target/check_kafka-*.jar check_kafka.jar
 
 .PHONY: gradle
 gradle:
 	make lib-gradle
-	#cd lib && ./mvnw deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
-	./gradlew clean build
+	./gradlew clean shadowJar
 	cp -av build/libs/check_kafka-*.jar check_kafka.jar
 
 .PHONY: lib-gradle
