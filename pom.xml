@@ -44,19 +44,11 @@
 
   </properties>
 
-  <repositories>
-    <repository>
-      <id>project.local</id>
-      <name>local</name>
-      <url>file:repo</url>
-    </repository>
-  </repositories>
-
   <dependencies>
     <dependency>
       <groupId>com.linkedin.harisekhon</groupId>
-      <artifactId>utils</artifactId>
-      <version>1.0</version>
+      <artifactId>harisekhon-utils</artifactId>
+      <version>1.16.0</version>
     </dependency>
 
     <dependency>
