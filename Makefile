@@ -16,7 +16,11 @@ ARGS=localhost:9092 test
 
 .PHONY: build
 build:
-	make lib
+	make sbt
+
+.PHONY: sbt
+sbt:
+	cd lib && make sbt
 	sbt clean assembly
 	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
