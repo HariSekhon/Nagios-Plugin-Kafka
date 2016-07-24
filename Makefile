@@ -60,7 +60,7 @@ clean:
 	./mvnw clean || :
 	sbt clean || :
 	./gradlew clean || :
-	rm -f check_kafka.jar
+	rm -vf check_kafka.jar
 
 .PHONY: update
 update:
