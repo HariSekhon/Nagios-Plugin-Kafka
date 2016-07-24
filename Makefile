@@ -22,7 +22,7 @@ build:
 
 .PHONY: mvn
 mvn:
-	make lib
+	cd lib && make mvn
 	cd lib && mvn deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
 	mvn clean package
 	cp -av target/check_kafka-*.jar check_kafka.jar
@@ -30,13 +30,13 @@ mvn:
 .PHONY: lib
 lib:
 	git submodule update --init
-	cd lib && mvn clean package
+	cd lib && make sbt
 	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
 
 .PHONY: clean
 clean:
-	cd lib && mvn clean
-	mvn clean
+	cd lib && make clean
+	mvn clean || :
 	sbt clean || :
 	rm -f check_kafka.jar
 
