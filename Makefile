@@ -27,13 +27,14 @@ sbt:
 .PHONY: mvn
 mvn:
 	make lib-mvn
-	cd lib && mvn deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
-	mvn clean package
+	cd lib && ./mvnw deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
+	./mvnw clean package
 	cp -av target/check_kafka-*.jar check_kafka.jar
 
 .PHONY: gradle
 gradle:
 	make lib-gradle
+	#cd lib && ./mvnw deploy:deploy-file -Durl=file://$$PWD/../repo -Dfile=$$(echo target/harisekhon-utils-*.jar) -DgroupId=com.linkedin.harisekhon -DartifactId=utils -Dpackaging=jar -Dversion=1.0
 	./gradlew clean build
 	cp -av build/libs/check_kafka-*.jar check_kafka.jar
 
@@ -56,9 +57,9 @@ lib-sbt:
 .PHONY: clean
 clean:
 	cd lib && make clean
-	mvn clean || :
+	./mvnw clean || :
 	sbt clean || :
-	gradle clean || :
+	./gradlew clean || :
 	rm -f check_kafka.jar
 
 .PHONY: update
@@ -104,4 +105,4 @@ run:
 # make exec ARGS="<args>"
 .PHONY: exec
 exec:
-	mvn exec:java -Dexec.args="${ARGS}"
+	./mvnw exec:java -Dexec.args="${ARGS}"
