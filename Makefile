@@ -31,6 +31,17 @@ mvn:
 	mvn clean package
 	cp -av target/check_kafka-*.jar check_kafka.jar
 
+.PHONY: gradle
+gradle:
+	make lib-gradle
+	./gradlew clean build
+	cp -av build/libs/check_kafka-*.jar check_kafka.jar
+
+.PHONY: lib-gradle
+lib-gradle:
+	git submodule update --init
+	cd lib && make gradle
+
 .PHONY: lib-mvn
 lib-mvn:
 	git submodule update --init
@@ -47,6 +58,7 @@ clean:
 	cd lib && make clean
 	mvn clean || :
 	sbt clean || :
+	gradle clean || :
 	rm -f check_kafka.jar
 
 .PHONY: update
