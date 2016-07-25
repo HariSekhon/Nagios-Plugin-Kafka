@@ -21,12 +21,14 @@ scalaVersion := "2.10.6"
 
 mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 
-unmanagedBase := baseDirectory.value / "lib/target"
+// unmanagedBase := baseDirectory.value / "lib/target"
 
 libraryDependencies ++= Seq (
+    // try using non-assembly jar first
+    "com.linkedin.harisekhon" %% "harisekhon" % "1.16.0",
+    "commons-cli" % "commons-cli" % "1.3.1",
     "org.apache.kafka" %% "kafka" % "0.9.0.1",
     "log4j" % "log4j" % "1.2.17",
-    "commons-cli" % "commons-cli" % "1.3",
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test"
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
+    "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 )
