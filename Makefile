@@ -18,12 +18,6 @@ ARGS=localhost:9092 test
 build:
 	make sbt
 
-.PHONY: sbt
-sbt:
-	make lib-sbt
-	sbt clean assembly
-	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
-
 .PHONY: mvn
 mvn:
 	make lib-mvn
@@ -36,17 +30,23 @@ gradle:
 	./gradlew clean shadowJar
 	cp -av build/libs/check_kafka-*.jar check_kafka.jar
 
-.PHONY: lib-gradle
-lib-gradle:
-	git submodule update --init
-	cd lib && make gradle
+.PHONY: sbt
+sbt:
+	make lib-sbt
+	sbt clean assembly
+	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 .PHONY: lib-mvn
 lib-mvn:
 	git submodule update --init
 	cd lib && make mvn
 
-.PHONY: lib
+.PHONY: lib-gradle
+lib-gradle:
+	git submodule update --init
+	cd lib && make gradle
+
+.PHONY: lib-sbt
 lib-sbt:
 	git submodule update --init
 	cd lib && make sbt
