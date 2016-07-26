@@ -25,7 +25,7 @@ mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 
 libraryDependencies ++= Seq (
     // try using non-assembly jar first
-    "com.linkedin.harisekhon" %% "harisekhon" % "1.16.0",
+    "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.0",
     "commons-cli" % "commons-cli" % "1.3.1",
     "org.apache.kafka" %% "kafka" % "0.9.0.1",
     "log4j" % "log4j" % "1.2.17",
