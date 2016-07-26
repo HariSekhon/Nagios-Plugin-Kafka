@@ -39,7 +39,6 @@ object CheckKafka extends App {
 class CheckKafka extends CLI {
     // using utils logger for uniformly increasing logging level for all logging via --verbose
 //    val log = Logger.getLogger("CheckKafka")
-    println("CheckKafka constructor")
     // TODO: replace scalaz.ValidationNel / cats.Validated and combine with |@|
     var brokers: String = ""
     var topic: String = ""
@@ -70,7 +69,6 @@ class CheckKafka extends CLI {
     log.info(s"test message => '$msg'")
 
     override def addOptions(): Unit = {
-        println("addOptions")
         options.addOption("B", "brokers", true, "Kafka broker list in the format host1:port1,host2:port2 ...")
         options.addOption("T", "topic", true, "Kafka topic to test")
         // TODO: consider round robin partitions for each run
