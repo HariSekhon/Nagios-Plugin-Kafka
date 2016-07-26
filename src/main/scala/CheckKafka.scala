@@ -156,8 +156,8 @@ class CheckKafka extends CLI {
 
     def setupJaas(): Unit = {
         log.debug("setting up JAAS for Kerberos security")
-        val DEFAULT_JAAS_FILE = "kafka_cli_jaas.conf"
-        val HDP_JAAS_PATH = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
+        val DefaultJaasFile = "kafka_cli_jaas.conf"
+        val HdpJaasPath = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
 
 //        val srcpath = new File(classOf[CheckKafka].getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
         val srcpath = new File(getClass.getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
@@ -166,7 +166,7 @@ class CheckKafka extends CLI {
         } else {
             srcpath
         }
-        val jaasDefaultConfig = Paths.get(jar.getParentFile.getAbsolutePath, "conf", DEFAULT_JAAS_FILE).toString
+        val jaasDefaultConfig = Paths.get(jar.getParentFile.getAbsolutePath, "conf", DefaultJaasFile).toString
         val jaasProp = System.getProperty("java.security.auth.login.config")
         if (jaasConfig.nonEmpty && jaasConfig.get.toString.nonEmpty) {
             log.info(s"using JAAS config file arg '$jaasConfig'")
@@ -180,10 +180,10 @@ class CheckKafka extends CLI {
             }
         }
         if (jaasConfig.isEmpty || jaasConfig.get.toString.isEmpty) {
-            val hdpJaasFile = new File(HDP_JAAS_PATH)
+            val hdpJaasFile = new File(HdpJaasPath)
             if (hdpJaasFile.exists() && hdpJaasFile.isFile()) {
-                log.info(s"found HDP Kafka kerberos config '$HDP_JAAS_PATH'")
-                jaasConfig = Option(HDP_JAAS_PATH)
+                log.info(s"found HDP Kafka kerberos config '$HdpJaasPath'")
+                jaasConfig = Option(HdpJaasPath)
             }
         }
         if (jaasConfig.isEmpty || jaasConfig.get.toString.isEmpty) {
@@ -215,7 +215,7 @@ class CheckKafka extends CLI {
                 e.printStackTrace()
                 System.exit(2)
             }
-            case e: Throwable => {
+            case e: Exception => {
                 println("Caught unexpected Exception: ")
                 e.printStackTrace()
                 System.exit(2)
@@ -292,10 +292,10 @@ class CheckKafka extends CLI {
         assert(consumedRecordCount != 0)
         var msg2: String = null
         for (record: ConsumerRecord[String, String] <- records) {
-            val record_topic = record.topic()
+            val recordTopic = record.topic()
             val value = record.value()
-            log.info(s"found message, topic '$record_topic', value = '$value'")
-            assert(topic.equals(record_topic))
+            log.info(s"found message, topic '$recordTopic', value = '$value'")
+            assert(topic.equals(recordTopic))
             if (msg.equals(value)) {
                 msg2 = value
             }
