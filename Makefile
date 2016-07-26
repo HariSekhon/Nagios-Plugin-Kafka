@@ -22,33 +22,33 @@ build:
 mvn:
 	make lib-mvn
 	./mvnw clean package
-	cp -av target/check_kafka-*.jar check_kafka.jar
+	ln -sfv target/check_kafka-*.jar check_kafka.jar
 
 .PHONY: gradle
 gradle:
 	make lib-gradle
 	./gradlew clean shadowJar
-	cp -av build/libs/check_kafka-*.jar check_kafka.jar
+	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
 
 .PHONY: sbt
 sbt:
 	make lib-sbt
 	sbt clean assembly
-	cp -av target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
+	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 .PHONY: lib-mvn
 lib-mvn:
-	git submodule update --init
+	make lib-update
 	cd lib && make mvn
 
 .PHONY: lib-gradle
 lib-gradle:
-	git submodule update --init
+	make lib-update
 	cd lib && make gradle
 
 .PHONY: lib-sbt
 lib-sbt:
-	git submodule update --init
+	make lib-update
 	cd lib && make sbt
 	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
 
@@ -63,7 +63,7 @@ clean:
 .PHONY: update
 update:
 	git pull
-	#git submodule update --init
+	make lib-update
 	make
 
 .PHONY: update2
@@ -74,6 +74,10 @@ update2:
 update-no-recompile:
 	git pull
 	git submodule update --init --recursive
+
+.PHONY: lib-update
+lib-update:
+	git submodule update --init
 
 .PHONY: update-submodules
 update-submodules:
