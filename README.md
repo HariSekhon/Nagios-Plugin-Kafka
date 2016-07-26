@@ -15,14 +15,14 @@ This project builds a single self-contained Java jar file with all dependencies 
 java -jar check_kafka.jar --help
 ```
 
-and there is an optional convenience shell wrapper script to make it even shorter:
+and there is an optional convenience shell wrapper script at the top level to make commands shorter:
 ```
 ./check_kafka --help
 ```
 
 Run against a broker
 ```
-./check_kafka --host kafka_broker:9092 --topic test
+./check_kafka --brokers kafka_broker:9092 --topic test
 OK: ...
 ```
 
