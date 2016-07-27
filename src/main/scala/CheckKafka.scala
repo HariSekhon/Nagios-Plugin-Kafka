@@ -159,13 +159,14 @@ class CheckKafka extends CLI {
             srcpath
         }
         val jaasDefaultConfig = Paths.get(jar.getParentFile.getAbsolutePath, "conf", defaultJaasFile).toString
-        val jaasProp = System.getProperty("java.security.auth.login.config")
+        val jaasProp = Option(System.getProperty("java.security.auth.login.config"))
         if (jaasConfig.nonEmpty && jaasConfig.getOrElse("").nonEmpty) {
             log.info(s"using JAAS config file arg '$jaasConfig'")
-        } else if (jaasProp != null) {
-            val jaasFile = new File(jaasProp)
-            if (jaasFile.exists() && jaasFile.isFile()) {
-                jaasConfig = Option(jaasProp)
+        } else if (jaasProp.nonEmpty) {
+            val jaasFilePath = jaasProp.getOrElse("")
+            val jaasFile = new File(jaasFilePath)
+            if (jaasFile.exists() && jaasFile.isFile) {
+                jaasConfig = Option(jaasFilePath)
                 log.info(s"using JAAS config file from System property java.security.auth.login.config = '$jaasConfig'")
             } else {
                 log.warn(s"JAAS path specified in System property java.security.auth.login.config = '$jaasProp' does not exist!")
