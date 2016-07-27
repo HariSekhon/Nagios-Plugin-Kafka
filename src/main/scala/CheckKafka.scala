@@ -179,7 +179,7 @@ class CheckKafka extends CLI {
                 jaasConfig = Option(hdpJaasPath)
             }
         }
-        if (jaasConfig.isEmpty || jaasConfig.get.toString.isEmpty) {
+        if (jaasConfig.isEmpty || jaasConfig.getOrElse("").isEmpty) {
             val jaasDefaultFile = new File(jaasDefaultConfig)
             if (jaasDefaultFile.exists() && jaasDefaultFile.isFile()) {
                 log.info(s"using default JaaS config file '$jaasDefaultConfig'")
@@ -188,7 +188,7 @@ class CheckKafka extends CLI {
                 log.warn("cannot find default JAAS file and none supplied")
             }
         }
-        if (jaasConfig.nonEmpty && jaasConfig.get.toString.nonEmpty) {
+        if (jaasConfig.nonEmpty && jaasConfig.getOrElse("").nonEmpty) {
             System.setProperty("java.security.auth.login.config", jaasConfig.get)
         } else {
             log.warn("no JAAS config defined")
