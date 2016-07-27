@@ -55,7 +55,7 @@ A self-contained jar file with all dependencies will be created and symlinked to
 
 The Maven and Gradle builds are best as they will auto bootstap and run with no prior installed dependencies other than Java and ```make``` to kick it off.
 
-The default ```make``` build will trigger a Gradle build which has an embedded checksum for security:
+The default ```make``` build will trigger a Gradle bootstrap from scratch with has an embedded checksum for security:
 ```
 make
 ```
