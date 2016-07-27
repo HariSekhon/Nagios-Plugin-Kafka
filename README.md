@@ -56,7 +56,10 @@ A self-contained jar file with all dependencies will be created and symlinked to
 The Maven and Gradle builds are best as they will auto bootstap and run with no prior installed dependencies other than Java and ```make``` to kick it off.
 
 The default ```make``` build will trigger a Gradle bootstrap from scratch with has an embedded checksum for security:
-``` make ```
+
+```
+make
+```
 
 You can call any one of the 3 major build systems explicitly instead, which will recurse to build the library submodule using the same mechanism:
 
