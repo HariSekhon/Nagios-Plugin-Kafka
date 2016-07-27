@@ -91,16 +91,8 @@ class CheckKafka extends CLI {
         }
         val partitionStr = cmd.getOptionValue("partition", "0")
         // if you have more than 10000 partitions please contact me to explain and get this limit increased!
-        partition = Integer.parseInt(partitionStr)
         validateInt(partition, "partition", 0, 10000)
-//            try {
-//                Integer.parseInt(options.getOption("partition").getValue("0"))
-//            } catch {
-//                 case e: NumberFormatException => {
-//                     quit("UNKNOWN", "Invalid argument for partition, must be an integer")
-//                 }
-//                 0
-//            }
+        partition = Integer.parseInt(partitionStr)
         loadProps()
         setupJaas()
     }
