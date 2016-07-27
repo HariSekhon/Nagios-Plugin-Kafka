@@ -22,10 +22,9 @@ import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.{Arrays, Properties}
 
-import org.apache.kafka.common.KafkaException
+import org.apache.kafka.common.{KafkaException, TopicPartition}
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
-import org.apache.kafka.common.TopicPartition
 
 import scala.util.control.NonFatal
 
