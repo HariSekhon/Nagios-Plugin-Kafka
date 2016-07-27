@@ -172,7 +172,7 @@ class CheckKafka extends CLI {
                 log.warn(s"JAAS path specified in System property java.security.auth.login.config = '$jaasProp' does not exist!")
             }
         }
-        if (jaasConfig.isEmpty || jaasConfig.get.toString.isEmpty) {
+        if (jaasConfig.isEmpty || jaasConfig.getOrElse("").isEmpty) {
             val hdpJaasFile = new File(hdpJaasPath)
             if (hdpJaasFile.exists() && hdpJaasFile.isFile()) {
                 log.info(s"found HDP Kafka kerberos config '$hdpJaasPath'")
