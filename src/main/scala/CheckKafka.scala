@@ -283,24 +283,15 @@ class CheckKafka extends CLI {
         val consumedRecordCount: Int = records.count()
         log.info(s"consumed record count = $consumedRecordCount")
         assert(consumedRecordCount != 0)
-        var msg2: Option[String] = None
-        for (record: ConsumerRecord[String, String] <- records) {
-            val recordTopic = record.topic()
-            val value = record.value()
-            log.info(s"found message, topic '$recordTopic', value = '$value'")
-            assert(topic.equals(recordTopic))
-            if (msg.equals(value)) {
-                msg2 = Option(value)
-            }
-        }
-        log.info(s"message returned: $msg2")
+        val msg2: Option[String] = getRecordMsg(records)
+        log.info(s"message returned: " + msg2.getOrElse(""))
         log.info(s"message expected: $msg")
         msg2 match {
             case None => {
                 println("CRITICAL: message not returned by Kafka")
                 System.exit(2)
             }
-            case Some(msg) => {
+            case Some(`msg`) => {
                 // good it's the same message
             }
             case _ => {
@@ -309,5 +300,18 @@ class CheckKafka extends CLI {
             }
         }
     }
+
+    def getRecordMsg(records: ConsumerRecords[String, String]): Option[String] = {
+         for (record: ConsumerRecord[String, String] <- records) {
+             val recordTopic = record.topic()
+             val value = record.value()
+             log.info(s"found message, topic '$recordTopic', value = '$value'")
+             assert(topic.equals(recordTopic))
+             if (msg.equals(value)) {
+                 return Option(value)
+             }
+         }
+         None
+     }
 
 }
