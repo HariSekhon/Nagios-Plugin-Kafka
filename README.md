@@ -28,7 +28,7 @@ OK: Kafka broker successfully returned unique message, write time = 0.185s, read
 
 ##### Kafka 0.9+ API Caveats
 
-This program only supports Kafka 0.9+ as the API changed (again) and Kerberos security was only added in the 0.9 API. For Kafka versions before 0.9 you can find Python and Perl versions of this program in the [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) that support 0.8 onwards (they dosn't support Kafka <= 0.7 as the API changed in 0.8 too and the underlying libraries in those languages don't support Kakfa <= 0.7).
+This program only supports Kafka 0.9+ as the API changed (again) and Kerberos security was only added in the 0.9 API. For Kafka versions before 0.9 you can find Python and Perl versions of this program in the [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins#advanced-nagios-plugins-collection) that support 0.8 onwards (they dosn't support Kafka <= 0.7 as the API changed in 0.8 too and the underlying libraries in those languages don't support Kakfa <= 0.7).
 
 It appears that connection errors are caught too early in the new Kafka Java API and I haven't found a workaround for that so the behaviour ends up being handled via my default self timeout mechanism that I apply to most of my tools. Hence if you specify an incorrect <host>:<port> or the Kafka brokers are down you will receive a generic ```UNKNOWN: self timed out after X secs``` as the code self terminates otherwise the Kafka API code just hangs as it retries indefinitely. I've tried various settings to get it to time out but nothing worked and I even posted to the Kafka users mailing list without answer.
 
