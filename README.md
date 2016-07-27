@@ -61,12 +61,15 @@ The default ```make``` build will trigger a Gradle bootstrap from scratch with h
 You can call any one of the 3 major build systems explicitly instead, which will recurse to build the library submodule using the same mechanism:
 
 Maven:
+
 ``` make mvn ```
 
 Gradle:
+
 ```make gradle ```
 
 SBT:
+
 ```make sbt ```
 
 ### Kafka 0.8 support - Alternative Perl & Python Kafka API Nagios Plugins
