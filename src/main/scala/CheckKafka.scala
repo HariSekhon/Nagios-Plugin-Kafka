@@ -50,13 +50,13 @@ class CheckKafka extends CLI {
     if (consumerProps eq producerProps) {
         throw new IllegalArgumentException("Consumer + Producer props should not be the same object")
     }
-    val producerProperties: InputStream = getClass.getResourceAsStream("/producer.properties")
-    if (producerProperties == null) {
+    val producerProperties: Option[InputStream] = Option(getClass.getResourceAsStream("/producer.properties"))
+    if (producerProperties.isEmpty) {
         log.error("could not find producer.properties file")
         System.exit(2)
     }
-    val consumerProperties: InputStream = getClass.getResourceAsStream("/consumer.properties")
-    if (consumerProperties == null) {
+    val consumerProperties: Option[InputStream] = Option(getClass.getResourceAsStream("/consumer.properties"))
+    if (consumerProperties.isEmpty) {
         log.error("could not find consumer.properties file")
         System.exit(2)
     }
@@ -102,7 +102,7 @@ class CheckKafka extends CLI {
         producerProps.put("bootstrap.servers", brokers)
 
         val consumerPropsArgs = consumerProps.clone().asInstanceOf[Properties]
-        consumerProps.load(consumerProperties)
+        consumerProps.load(consumerProperties.get)
         if (log.isDebugEnabled) {
             log.debug("Loaded Consumer Properties from resource file:")
             consumerProps.foreach({ case (k, v) => log.debug(s"  $k = $v") })
@@ -126,7 +126,7 @@ class CheckKafka extends CLI {
         consumerProps.put("group.id", groupId)
 
         val producerPropsArgs = producerProps.clone().asInstanceOf[Properties]
-        producerProps.load(producerProperties)
+        producerProps.load(producerProperties.get)
         if (log.isDebugEnabled) {
             log.debug("Loaded Producer Properties from resource file:")
             producerProps.foreach({ case (k, v) => log.debug(s"  $k = $v") })
