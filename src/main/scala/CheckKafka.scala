@@ -102,7 +102,7 @@ class CheckKafka extends CLI {
         producerProps.put("bootstrap.servers", brokers)
 
         val consumerPropsArgs = consumerProps.clone().asInstanceOf[Properties]
-        consumerProps.load(consumerProperties.get)
+        consumerProps.load(consumerProperties.get) // throw Exception as I tested this is not None already
         if (log.isDebugEnabled) {
             log.debug("Loaded Consumer Properties from resource file:")
             consumerProps.foreach({ case (k, v) => log.debug(s"  $k = $v") })
@@ -126,7 +126,7 @@ class CheckKafka extends CLI {
         consumerProps.put("group.id", groupId)
 
         val producerPropsArgs = producerProps.clone().asInstanceOf[Properties]
-        producerProps.load(producerProperties.get)
+        producerProps.load(producerProperties.get) // throw Exception as I tested this is not None already
         if (log.isDebugEnabled) {
             log.debug("Loaded Producer Properties from resource file:")
             producerProps.foreach({ case (k, v) => log.debug(s"  $k = $v") })
