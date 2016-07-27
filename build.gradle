@@ -29,6 +29,8 @@ description = """Hari Sekhon's Kafka 0.9 API Tester / Nagios Plugin with Kerbero
 
 mainClassName = 'com.linkedin.harisekhon.kafka.CheckKafka'
 
+def scalaVersion = '2.10'
+
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -40,8 +42,10 @@ repositories {
 dependencies {
     compile group: 'com.linkedin.harisekhon', name: 'harisekhon-utils', version:'1.17.0'
     compile group: 'commons-cli', name: 'commons-cli', version:'1.3.1'
-    compile group: 'org.apache.kafka', name: 'kafka_2.10', version:'0.10.0.0'
-    testCompile group: 'org.scalatest', name: 'scalatest_2.10', version:'2.2.6'
+    // version 0.10 bug:
+    // Cannot auto-commit offsets for group ... since the coordinator is unknown
+    compile group: 'org.apache.kafka', name: "kafka_${scalaVersion}", version:'0.9.0.1'
+    testCompile group: 'org.scalatest', name: "scalatest_${scalaVersion}", version:'2.2.6'
     testCompile group: 'junit', name: 'junit', version:'4.12'
 }
 
