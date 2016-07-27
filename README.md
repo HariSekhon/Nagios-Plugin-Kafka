@@ -49,7 +49,7 @@ docker run harisekhon/nagios-plugin-kafka check_kafka --help
 
 #### Compile Yourself
 
-Maven, Gradle or SBT builds are all provided.
+Maven, Gradle or SBT automated builds are all provided.
 
 A self-contained jar file with all dependencies will be created and symlinked to ```check_kafka.jar``` at the top level.
 
