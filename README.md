@@ -62,15 +62,15 @@ You can call any one of the 3 major build systems explicitly instead, which will
 
 Maven:
 
-``` make mvn ```
+```make mvn```
 
 Gradle:
 
-```make gradle ```
+```make gradle```
 
 SBT:
 
-```make sbt ```
+```make sbt```
 
 ### Kafka 0.8 support - Alternative Perl & Python Kafka API Nagios Plugins
 
