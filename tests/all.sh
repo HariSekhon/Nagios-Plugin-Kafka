@@ -17,15 +17,13 @@ set -euo pipefail
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+cd "$srcdir/..";
+
+. bash-tools/utils.sh
+
 bash-tools/all.sh
 
-echo "
-# =============================== #
-# Running Nagios Plugin Kafka ALL
-# =============================== #
-"
-
-cd "$srcdir/..";
+section "Running Nagios Plugin Kafka ALL"
 
 for script in $(find tests -name 'test*.sh'); do
     $script
