@@ -47,6 +47,7 @@ class CheckKafka extends CLI {
     var jaasConfig: Option[String] = None
     val consumerProps = new Properties
     val producerProps = new Properties
+    usage_msg = "check_kafka --brokers localhost:9092 --topic test <options>"
     if (consumerProps eq producerProps) {
         throw new IllegalArgumentException("Consumer + Producer props should not be the same object")
     }
