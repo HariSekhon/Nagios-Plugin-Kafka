@@ -75,7 +75,7 @@ make sbt
 
 ### Kafka 0.8 support - Alternative Perl & Python Kafka API Nagios Plugins
 
-The [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins) has both Perl and Python predecessors to this program which work with Kafka 0.8+. The main differenitator with this Scala version is that it uses the native Java API and has full Kerberos support, which the dynamic language versions do not.
+The [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins#advanced-nagios-plugins-collection) has both Perl and Python predecessors to this program which work with Kafka 0.8+. The main differenitator with this Scala version is that it uses the native Java API and has full Kerberos support, which the dynamic language versions do not.
 
 ### See Also
 
