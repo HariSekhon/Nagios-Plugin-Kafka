@@ -160,7 +160,7 @@ class CheckKafka extends CLI {
         }
         val jaasDefaultConfig = Paths.get(jar.getParentFile.getAbsolutePath, "conf", defaultJaasFile).toString
         val jaasProp = System.getProperty("java.security.auth.login.config")
-        if (jaasConfig.nonEmpty && jaasConfig.get.toString.nonEmpty) {
+        if (jaasConfig.nonEmpty && jaasConfig.getOrElse("").nonEmpty) {
             log.info(s"using JAAS config file arg '$jaasConfig'")
         } else if (jaasProp != null) {
             val jaasFile = new File(jaasProp)
