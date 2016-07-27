@@ -219,7 +219,6 @@ class CheckKafka extends CLI {
     def runTest(): Unit = {
         log.debug("runTest()")
         val startTime = System.currentTimeMillis()
-        // Cannot use 0.8 consumers as only new 0.9 API supports Kerberos
         log.info("creating Kafka consumer")
         val consumer = new KafkaConsumer[String, String](consumerProps)
         log.info("creating Kafka producer")
@@ -244,7 +243,6 @@ class CheckKafka extends CLI {
         val output = s"OK: Kafka broker$plural successfully returned unique message" +
                      s", write time = ${writeTime}s, read time = ${readTime}s, total time = ${totalTime}s " +
                      s"| write_time=${writeTime}s read_time=${readTime}s total_time=${totalTime}s"
-//        log.info(output)
         println(output)
     }
 
@@ -302,16 +300,16 @@ class CheckKafka extends CLI {
     }
 
     def getRecordMsg(records: ConsumerRecords[String, String]): Option[String] = {
-         for (record: ConsumerRecord[String, String] <- records) {
-             val recordTopic = record.topic()
-             val value = record.value()
-             log.info(s"found message, topic '$recordTopic', value = '$value'")
-             assert(topic.equals(recordTopic))
-             if (msg.equals(value)) {
-                 return Option(value)
-             }
-         }
-         None
-     }
+        for (record: ConsumerRecord[String, String] <- records) {
+            val recordTopic = record.topic
+            val value = record.value
+            log.info(s"found message, topic '$recordTopic', value = '$value'")
+            assert(topic.equals(recordTopic))
+            if (msg.equals(value)) {
+                return Option(value)
+            }
+        }
+        None
+    }
 
 }
