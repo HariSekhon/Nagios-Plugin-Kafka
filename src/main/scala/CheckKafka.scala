@@ -17,7 +17,6 @@ package com.linkedin.harisekhon.kafka
 
 import com.linkedin.harisekhon.CLI
 import com.linkedin.harisekhon.Utils._
-
 import java.io.{File, InputStream, PipedInputStream, PipedOutputStream}
 import java.nio.file.Paths
 import java.text.SimpleDateFormat
@@ -27,6 +26,8 @@ import org.apache.kafka.common.KafkaException
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 import org.apache.kafka.common.TopicPartition
+
+import scala.util.control.NonFatal
 
 //import org.apache.log4j.Logger
 
@@ -207,7 +208,7 @@ class CheckKafka extends CLI {
                 e.printStackTrace()
                 System.exit(2)
             }
-            case e: Exception => {
+            case NonFatal(e) => {
                 println("Caught unexpected Exception: ")
                 e.printStackTrace()
                 System.exit(2)
