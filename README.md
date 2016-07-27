@@ -49,11 +49,11 @@ docker run harisekhon/nagios-plugin-kafka check_kafka --help
 
 #### Compile Yourself
 
-Builds with any one of Maven, Gradle or SBT.
+Maven, Gradle or SBT builds are all provided.
 
-A self-contained jar file with all dependencies will be created and symlinked from the top level.
+A self-contained jar file with all dependencies will be created and symlinked to ```check_kafka.jar``` at the top level.
 
-The Maven and Gradle builds are best as they will be automatically downloaded and run with no prior dependencies other than Java and ```make``` to kick it off.
+The Maven and Gradle builds are best as they will auto bootstap and run with no prior installed dependencies other than Java and ```make``` to kick it off.
 
 The default ```make``` build will trigger a Gradle build which has an embedded checksum for security:
 ```
