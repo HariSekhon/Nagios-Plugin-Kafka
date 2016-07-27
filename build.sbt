@@ -27,6 +27,8 @@ libraryDependencies ++= Seq (
     // try using non-assembly jar first
     "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.0",
     "commons-cli" % "commons-cli" % "1.3.1",
+    // 0.10.0.0 breaks, either hangs or gives this exception:
+    // org.apache.kafka.common.protocol.types.SchemaException: Error reading field 'topic_metadata': Error reading array of size 1666657, only 53 bytes available
     "org.apache.kafka" %% "kafka" % "0.9.0.1",
     "log4j" % "log4j" % "1.2.17",
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
