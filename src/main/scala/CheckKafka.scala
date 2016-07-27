@@ -295,12 +295,18 @@ class CheckKafka extends CLI {
         }
         log.info(s"message returned: $msg2")
         log.info(s"message expected: $msg")
-        if (msg2 == null) {
-            println("CRITICAL: message not returned by Kafka")
-            System.exit(2)
-        } else if (!msg.equals(msg2)) {
-            println("CRITICAL: message returned does not equal message sent!")
-            System.exit(2)
+        msg2 match {
+            case null => {
+                println("CRITICAL: message not returned by Kafka")
+                System.exit(2)
+            }
+            case `msg` => {
+                // good it's the same message
+            }
+            case _ => {
+                println("CRITICAL: message returned does not equal message sent!")
+                System.exit (2)
+            }
         }
     }
 
