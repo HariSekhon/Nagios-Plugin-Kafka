@@ -156,8 +156,8 @@ class CheckKafka extends CLI {
 
     def setupJaas(): Unit = {
         log.debug("setting up JAAS for Kerberos security")
-        val DefaultJaasFile = "kafka_cli_jaas.conf"
-        val HdpJaasPath = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
+        val defaultJaasFile = "kafka_cli_jaas.conf"
+        val hdpJaasPath = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
 
 //        val srcpath = new File(classOf[CheckKafka].getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
         val srcpath = new File(getClass.getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
@@ -166,7 +166,7 @@ class CheckKafka extends CLI {
         } else {
             srcpath
         }
-        val jaasDefaultConfig = Paths.get(jar.getParentFile.getAbsolutePath, "conf", DefaultJaasFile).toString
+        val jaasDefaultConfig = Paths.get(jar.getParentFile.getAbsolutePath, "conf", defaultJaasFile).toString
         val jaasProp = System.getProperty("java.security.auth.login.config")
         if (jaasConfig.nonEmpty && jaasConfig.get.toString.nonEmpty) {
             log.info(s"using JAAS config file arg '$jaasConfig'")
@@ -180,10 +180,10 @@ class CheckKafka extends CLI {
             }
         }
         if (jaasConfig.isEmpty || jaasConfig.get.toString.isEmpty) {
-            val hdpJaasFile = new File(HdpJaasPath)
+            val hdpJaasFile = new File(hdpJaasPath)
             if (hdpJaasFile.exists() && hdpJaasFile.isFile()) {
-                log.info(s"found HDP Kafka kerberos config '$HdpJaasPath'")
-                jaasConfig = Option(HdpJaasPath)
+                log.info(s"found HDP Kafka kerberos config '$hdpJaasPath'")
+                jaasConfig = Option(hdpJaasPath)
             }
         }
         if (jaasConfig.isEmpty || jaasConfig.get.toString.isEmpty) {
