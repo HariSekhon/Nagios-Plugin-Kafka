@@ -282,24 +282,24 @@ class CheckKafka extends CLI {
         val consumedRecordCount: Int = records.count()
         log.info(s"consumed record count = $consumedRecordCount")
         assert(consumedRecordCount != 0)
-        var msg2: String = null
+        var msg2: Option[String] = None
         for (record: ConsumerRecord[String, String] <- records) {
             val recordTopic = record.topic()
             val value = record.value()
             log.info(s"found message, topic '$recordTopic', value = '$value'")
             assert(topic.equals(recordTopic))
             if (msg.equals(value)) {
-                msg2 = value
+                msg2 = Option(value)
             }
         }
         log.info(s"message returned: $msg2")
         log.info(s"message expected: $msg")
         msg2 match {
-            case null => {
+            case None => {
                 println("CRITICAL: message not returned by Kafka")
                 System.exit(2)
             }
-            case `msg` => {
+            case Some(msg) => {
                 // good it's the same message
             }
             case _ => {
