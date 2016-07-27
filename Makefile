@@ -16,7 +16,7 @@ ARGS=localhost:9092 test
 
 .PHONY: build
 build:
-	make sbt
+	make gradle
 
 .PHONY: mvn
 mvn:
