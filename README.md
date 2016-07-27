@@ -23,7 +23,7 @@ and there is an optional convenience shell wrapper script at the top level to ma
 Run against a broker
 ```
 ./check_kafka --brokers kafka_broker:9092 --topic test
-OK: ...
+OK: Kafka broker successfully returned unique message, write time = 0.185s, read time = 0.045s, total time = 1.729s | write_time=0.185s read_time=0.045s total_time=1.729s
 ```
 
 ##### Kafka 0.9+ API Caveats
