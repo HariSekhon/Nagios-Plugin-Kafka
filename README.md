@@ -46,7 +46,7 @@ It appears that connection errors are caught too early in the new Kafka Java API
 
 #### Keberos Support
 
-See the ```conf/``` directory for JaaS kerberos configurations.
+See the ```conf/``` directory for JAAS kerberos configurations.
 
 ### Build
 
