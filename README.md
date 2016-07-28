@@ -8,6 +8,12 @@ Kafka Scala API Tester - Advanced Nagios Plugin / CLI Tool with Kerberos support
 
 Kafka 0.9+ API CLI Tester & Advanced Nagios Plugin with Kerberos support, written in Scala. See the [Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagios-plugins#advanced-nagios-plugins-collection) for more related testing and enterprise monitoring programs.
 
+Hari Sekhon
+
+Big Data Contractor, United Kingdom
+
+https://www.linkedin.com/in/harisekhon
+
 ## Quick Start
 
 This project builds a single self-contained Java jar file with all dependencies included and can simply be run on the command line with full switch option support:
