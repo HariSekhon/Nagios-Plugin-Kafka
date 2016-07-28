@@ -57,7 +57,7 @@ If you have docker installed this one command will download and run it:
 docker run harisekhon/nagios-plugin-kafka check_kafka --help
 ```
 
-#### Build from Source
+#### Automated Build from Source
 
 Maven, Gradle and SBT automated builds are all provided.
 
