@@ -18,7 +18,7 @@ jdk:
   - oraclejdk8
   - oraclejdk7
   # build failures
-  #- openjdk7
+  - openjdk7
   #- openjdk6
 
 scala:
