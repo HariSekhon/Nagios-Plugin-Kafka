@@ -22,23 +22,20 @@ import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.util.{Arrays, Properties}
 
+import org.apache.commons.lang.exception.ExceptionUtils
 import org.apache.kafka.common.{KafkaException, TopicPartition}
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.clients.consumer.{ConsumerRecord, ConsumerRecords, KafkaConsumer}
 
-import scala.util.control.NonFatal
-
-//import org.apache.log4j.Logger
-
 import scala.collection.JavaConversions._
+import scala.util.{Failure, Success, Try}
+import scala.util.control.NonFatal
 
 object CheckKafka extends App {
     new CheckKafka().main2(args)
 }
 
 class CheckKafka extends CLI {
-    // using utils logger for uniformly increasing logging level for all logging via --verbose
-//    val log = Logger.getLogger("CheckKafka")
     // TODO: replace scalaz.ValidationNel / cats.Validated and combine with |@|
     var brokers: String = ""
     var topic: String = ""
@@ -151,7 +148,6 @@ class CheckKafka extends CLI {
         val defaultJaasFile = "kafka_cli_jaas.conf"
         val hdpJaasPath = "/usr/hdp/current/kafka-broker/config/kafka_client_jaas.conf"
 
-//        val srcpath = new File(classOf[CheckKafka].getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
         val srcpath = new File(getClass.getProtectionDomain.getCodeSource.getLocation.toURI.getPath)
         val jar = if (srcpath.toString.contains("/target/")) {
             srcpath.getParentFile.getParentFile
@@ -196,22 +192,32 @@ class CheckKafka extends CLI {
     }
 
     override def run(): Unit = {
-        try {
-            // without port suffix raises the following exception, which we intend to catch and print nicely
-            // Exception in thread "main" org.apache.kafka.common.KafkaException: Failed to construct kafka consumer
-            // ...
-            // org.apache.kafka.common.config.ConfigException: Invalid url in bootstrap.servers: 192.168.99.100
-            runTest()
-        } catch {
-            case e: KafkaException => {
-                println("Caught Kafka Exception: ")
-                e.printStackTrace()
-                System.exit(2)
-            }
-            case NonFatal(e) => {
-                println("Caught unexpected Exception: ")
-                e.printStackTrace()
-                System.exit(2)
+        // without port suffix raises the following exception, which we intend to catch and print nicely
+        // Exception in thread "main" org.apache.kafka.common.KafkaException: Failed to construct kafka consumer
+        // ...
+        // org.apache.kafka.common.config.ConfigException: Invalid url in bootstrap.servers: 192.168.99.100
+        val result = Try(runTest())
+        result match {
+            case Success(t) => t
+            case Failure(t) => {
+                t match {
+                    case e: KafkaException => {
+                        println("CRITICAL: " + ExceptionUtils.getRootCause(e).getMessage)
+                        if (log.isDebugEnabled) {
+                            println("Caught Kafka Exception: ")
+                            e.printStackTrace()
+                        }
+                        System.exit(2)
+                    }
+                    case NonFatal(e) => {
+                        println("CRITICAL: " + ExceptionUtils.getRootCause(e).getMessage)
+                        if (log.isDebugEnabled) {
+                            println("Caught unexpected Exception: ")
+                            e.printStackTrace()
+                        }
+                        System.exit(2)
+                    }
+                }
             }
         }
     }
