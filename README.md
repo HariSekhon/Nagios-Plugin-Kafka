@@ -20,7 +20,7 @@ and there is an optional convenience shell wrapper script at the top level to ma
 ./check_kafka --help
 ```
 
-Run against a broker
+Run against one or more Kafka brokers, comma separated:
 ```
 ./check_kafka --brokers localhost:9092 --topic test
 OK: Kafka broker successfully returned unique message, write time = 0.185s, read time = 0.045s, total time = 1.729s | write_time=0.185s read_time=0.045s total_time=1.729s
