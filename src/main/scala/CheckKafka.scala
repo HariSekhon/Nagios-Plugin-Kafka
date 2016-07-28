@@ -74,15 +74,14 @@ class CheckKafka extends CLI {
         options.addOption("T", "topic", true, "Kafka topic to test")
         // TODO: consider round robin partitions for each run
         options.addOption("P", "partition", true, "Kafka partition to test (default: 0)")
-        options.addOption("l", "list-topics", true, "List Kafka topics and exit")
-        options.addOption("p", "list-partitions", true, "List Kafka partitions for the given topic and exit (requires --topic)")
+        options.addOption("l", "list-topics", false, "List Kafka topics and exit")
+        options.addOption("p", "list-partitions", false, "List Kafka partitions for the given topic and exit (requires --topic)")
     }
 
     override def processArgs(): Unit = {
         if (cmd.hasOption("brokers")) {
             brokers = cmd.getOptionValue("brokers", "")
         }
-        println(s"brokers are $brokers")
         validateNodePortList(brokers, "kafka")
         if (cmd.hasOption("topic")) {
             topic = cmd.getOptionValue("topic", "")
