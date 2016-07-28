@@ -277,9 +277,9 @@ class CheckKafka extends CLI {
 
     def consume(consumer: KafkaConsumer[String, String], topic: String = topic, partition: Int = partition): Unit = {
         log.debug(s"consumer(consumer, $topic, $partition")
-        val topicPpartition = new TopicPartition(topic, partition)
+        val topicPartition = new TopicPartition(topic, partition)
         log.info(s"seeking to last known offset $lastOffset")
-        consumer.seek(topicPpartition, lastOffset)
+        consumer.seek(topicPartition, lastOffset)
         log.info(s"consuming from offset $lastOffset")
         val records: ConsumerRecords[String, String] = consumer.poll(200) // ms
         log.info("closing consumer")
