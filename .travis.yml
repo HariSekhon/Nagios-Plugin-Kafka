@@ -17,9 +17,7 @@ language: scala
 jdk:
   - oraclejdk8
   - oraclejdk7
-  # build failures
   - openjdk7
-  #- openjdk6
 
 scala:
   - 2.9.3
