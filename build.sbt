@@ -24,13 +24,10 @@ mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 // unmanagedBase := baseDirectory.value / "lib/target"
 
 libraryDependencies ++= Seq (
-    // try using non-assembly jar first
     "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.0",
-    "commons-cli" % "commons-cli" % "1.3.1",
     // Kafka 0.10 API bug:
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
     "org.apache.kafka" %% "kafka" % "0.9.0.1",
-    "log4j" % "log4j" % "1.2.17",
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
     "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 )
