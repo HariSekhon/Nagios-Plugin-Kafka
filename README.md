@@ -16,7 +16,7 @@ Big Data Contractor, United Kingdom
 
 https://www.linkedin.com/in/harisekhon
 
-## Quick Start
+## Intro
 
 This project builds a single self-contained Java jar file with all dependencies included and can simply be run on the command line with full switch option support:
 ```
@@ -48,7 +48,7 @@ See the ```conf/``` directory for JaaS kerberos configurations.
 
 ### Build
 
-#### Docker
+#### Quick Start - Docker
 
 A Dockerized pre-built version is available on [DockerHub](https://hub.docker.com/r/harisekhon/nagios-plugin-kafka).
 
