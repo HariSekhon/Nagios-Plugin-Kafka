@@ -2,7 +2,7 @@
 //  Author: Hari Sekhon
 //  Date: 2016-06-06 22:51:45 +0100 (Mon, 06 Jun 2016)
 //
-//  vim:ts=4:sts=4:sw=4:et
+//  vim:ts=4:sts=4:sw=4:et:filetype=java
 //
 //  https://github.com/harisekhon/nagios-plugin-kafka
 //
