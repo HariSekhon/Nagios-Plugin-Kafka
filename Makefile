@@ -108,3 +108,8 @@ run:
 .PHONY: exec
 exec:
 	./mvnw exec:java -Dexec.args="${ARGS}"
+
+findbugs:
+	./mvnw compile
+	./mvnw findbugs:findbugs
+	./mvnw findbugs:gui
