@@ -60,6 +60,12 @@ clean:
 	./gradlew clean || :
 	rm -f check_kafka.jar
 
+.PHONY: deep-clean
+deep-clean:
+	cd lib && make deep-clean
+	make clean
+	rm -rf .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot
+
 .PHONY: update
 update:
 	git pull
