@@ -101,6 +101,23 @@ package:
 	make lib
 	sbt package
 
+.PHONY: sonar
+sonar:
+	make gradle-sonar
+
+.PHONY: gradle-sonar
+gradle-sonar:
+	@# calls compileJava
+	./gradlew sonarqube
+
+.PHONY: mvn-sonar
+mvn-sonar:
+	./mvnw sonar:sonar
+
+.PHONY: sonar-scanner
+sonar-scanner:
+	sonar-scanner
+
 .PHONY: test
 test:
 	tests/all.sh
