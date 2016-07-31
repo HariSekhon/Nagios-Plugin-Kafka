@@ -37,6 +37,7 @@
 
     <harisekhon-utils.version>1.17.0</harisekhon-utils.version>
     <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+    <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
     <junit.version>4.12</junit.version>
     <!--
       Kafka 0.10 API bug:
@@ -178,7 +179,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>${findbugs-maven-plugin.version}</version>
         <configuration>
           <effort>Max</effort>
           <threshold>Low</threshold>
