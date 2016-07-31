@@ -22,19 +22,19 @@ build:
 mvn:
 	make lib-mvn
 	./mvnw clean package
-	ln -sf target/check_kafka-*.jar check_kafka.jar
+	ln -sfv target/check_kafka-*.jar check_kafka.jar
 
 .PHONY: gradle
 gradle:
 	make lib-gradle
 	./gradlew clean shadowJar
-	ln -sf build/libs/check_kafka-*.jar check_kafka.jar
+	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
 
 .PHONY: sbt
 sbt:
 	make lib-sbt
 	sbt clean assembly
-	ln -sf target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
+	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 .PHONY: lib-mvn
 lib-mvn:
