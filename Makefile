@@ -23,7 +23,8 @@ build:
 # used by CI
 .PHONY: random-build
 random-build:
-	@x=$$(bash-tools/random_select.sh build mvn gradle sbt); echo make $$x; make $$x
+	# not including SBT as it gets buffer overflow on openjdk 7
+	@x=$$(bash-tools/random_select.sh build mvn gradle); echo make $$x; make $$x
 
 .PHONY: mvn
 mvn:
