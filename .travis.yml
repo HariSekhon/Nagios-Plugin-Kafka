@@ -24,11 +24,10 @@ scala:
   - 2.10.4
   - 2.11.2
 
-# This will follow make to ensure that we have built the Java submodule library required as an SBT unmanaged dep
-before_install:
-  - make
-
 #sudo: required
+
+install:
+  - make random-build
 
 notifications:
   email: false
