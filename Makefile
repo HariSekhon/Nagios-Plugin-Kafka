@@ -21,7 +21,7 @@ build:
 # used by CI
 .PHONY: random-build
 random-build:
-	@a[0]=build; a[1]=mvn; a[2]=gradle; a[3]=sbt; rand=$$[ $$RANDOM % 4 ]; r=$${a[$$rand]}; make $$r
+	@a[0]=build; a[1]=mvn; a[2]=gradle; a[3]=sbt; rand=$$[ $$RANDOM % 4 ]; r=$${a[$$rand]}; echo make $$r; make $$r
 
 .PHONY: mvn
 mvn:
