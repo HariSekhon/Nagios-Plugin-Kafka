@@ -20,7 +20,8 @@ jdk:
   - openjdk7
 
 scala:
-  - 2.9.3
+  # SBT as it gets buffer overflow on openjdk7 with Scala 2.9
+  #- 2.9.3
   - 2.10.4
   - 2.11.2
 
