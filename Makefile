@@ -12,6 +12,8 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
+SHELL=/bin/bash
+
 ARGS=localhost:9092 test
 
 .PHONY: build
