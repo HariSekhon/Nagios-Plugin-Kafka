@@ -148,3 +148,7 @@ findbugs:
 .PHONY: mvn-versioneye
 mvn-versioneye:
 	./mvnw versioneye:update
+
+.PHONY: gradle-versioneye
+gradle-versioneye:
+	./gradlew versionEyeUpdate
