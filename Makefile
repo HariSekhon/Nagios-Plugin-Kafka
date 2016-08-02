@@ -145,6 +145,11 @@ findbugs:
 	./mvnw findbugs:findbugs
 	./mvnw findbugs:gui
 
+.PHONY: versioneye
+versioneye:
+	make mvn-versioneye
+	make gradle-versioneye
+
 .PHONY: mvn-versioneye
 mvn-versioneye:
 	./mvnw versioneye:update
