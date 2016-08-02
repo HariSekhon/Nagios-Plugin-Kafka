@@ -54,6 +54,7 @@
     <scala.version>2.10.6</scala.version>
     <scalatest.version>2.2.6</scalatest.version>
     <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
+    <versioneye-maven-plugin.version>3.10.0</versioneye-maven-plugin.version>
 
   </properties>
 
@@ -199,6 +200,15 @@
               <version>LATEST</version> <!-- Auto-update to the latest stable -->
             </plugin>
           </plugins>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.versioneye</groupId>
+        <artifactId>versioneye-maven-plugin</artifactId>
+        <version>${versioneye-maven-plugin.version}</version>
+        <configuration>
+          <projectId>57616d340a82b200276f6669</projectId>
         </configuration>
       </plugin>
 
