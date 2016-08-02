@@ -23,8 +23,8 @@ build:
 # used by CI
 .PHONY: random-build
 random-build:
-	@# SBT as it gets buffer overflow on openjdk7
-	@x=$$(bash-tools/random_select.sh build mvn gradle); echo make $$x; make $$x
+	@# SBT + Maven Surefire plugin both get buffer overflow on openjdk7 :-/
+	@x=$$(bash-tools/random_select.sh build mvn gradle sbt); echo make $$x; make $$x
 
 .PHONY: mvn
 mvn:
