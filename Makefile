@@ -138,6 +138,14 @@ run:
 # make exec ARGS="<args>"
 .PHONY: exec
 exec:
+	make gradle-exec
+
+.PHONY: gradle-exec
+gradle-exec:
+	./gradlew run -P ARGS="${ARGS}"
+
+.PHONY: mvn-exec
+mvn-exec:
 	./mvnw exec:java -Dexec.args="${ARGS}"
 
 .PHONY: findbugs
