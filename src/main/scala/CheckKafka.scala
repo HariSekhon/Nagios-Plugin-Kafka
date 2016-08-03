@@ -211,7 +211,7 @@ class CheckKafka extends CLI {
             case Failure(t) => {
                 t match {
                     case e: KafkaException => {
-                        println("CRITICAL: " + ExceptionUtils.getRootCause(e).getMessage)
+                        println("CRITICAL: " + ExceptionUtils.getRootCauseMessage(e))
                         if (log.isDebugEnabled) {
                             println("Caught Kafka Exception: ")
                             e.printStackTrace()
@@ -219,7 +219,7 @@ class CheckKafka extends CLI {
                         System.exit(2)
                     }
                     case NonFatal(e) => {
-                        println("CRITICAL: " + ExceptionUtils.getRootCause(e).getMessage)
+                        println("CRITICAL: " + ExceptionUtils.getRootCauseMessage(e))
                         if (log.isDebugEnabled) {
                             println("Caught unexpected Exception: ")
                             e.printStackTrace()
