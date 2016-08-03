@@ -261,7 +261,7 @@ class CheckKafka extends CLI {
             } else {
                 s"broker$plural"
             }
-        val with_sasl =
+        val withSasl =
             if(consumerProps.getProperty("security.protocol", "").contains("SASL") &&
                producerProps.getProperty("security.protocol", "").contains("SASL")){
                 " with sasl authentication"
@@ -269,7 +269,7 @@ class CheckKafka extends CLI {
                 ""
             }
         val output = s"OK: Kafka $brokermsg successfully returned unique message via topic '$topic' partition '$partition'" +
-                     with_sasl +
+                     withSasl +
                      s", write time = ${writeTime}s, read time = ${readTime}s, total time = ${totalTime}s " +
                      s"| write_time=${writeTime}s read_time=${readTime}s total_time=${totalTime}s"
         println(output)
