@@ -130,10 +130,10 @@ sonar-scanner:
 test:
 	tests/all.sh
 
-# make run ARGS="192.168.99.100:9092 test"
+# make run ARGS="<args>"
 .PHONY: run
 run:
-	sbt "run ${ARGS}"
+	make exec
 
 # make exec ARGS="<args>"
 .PHONY: exec
@@ -147,6 +147,11 @@ gradle-exec:
 .PHONY: mvn-exec
 mvn-exec:
 	./mvnw exec:java -Dexec.args="${ARGS}"
+
+# make sbt-run ARGS="192.168.99.100:9092 test"
+.PHONY: sbt-run
+sbt-run:
+	sbt "run ${ARGS}"
 
 .PHONY: findbugs
 findbugs:
