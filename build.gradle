@@ -32,12 +32,34 @@ mainClassName = 'com.linkedin.harisekhon.kafka.CheckKafka'
 
 def scalaVersion = '2.10'
 
-//sourceCompatibility = 1.7
-//targetCompatibility = 1.7
+//def target_java_version = '7'
+//
+//sourceCompatibility = "1.$target_java_version"
+//targetCompatibility = "1.$target_java_version"
+//
+//def java_home_env = "JAVA${target_java_version}_HOME"
+//def java_home = System.getenv("$java_home_env")
+//if(java_home){
+//    //println "found \$$java_home_env = $java_home"
+//    //println "will use this for bootstrap classpath for cross-compile"
+//    project.tasks.withType(AbstractCompile, { AbstractCompile ac ->
+//        ac.options.bootClasspath = "$java_home/jre/lib/rt.jar"
+//    })
+//} else if(System.getProperty('java.specification.version') != target_java_version){
+//    //System.err.println("WARNING: couldn't find $java_home_env environment variable to set bootstrap classpath for cross compiling " +
+//    //                   "(may generate code that isn't actually compatible with the target version)")
+//}
 
 repositories {
     mavenLocal()
     mavenCentral()
+}
+
+run {
+    if(project.hasProperty("ARGS")){
+        //args Eval.me(ARGS)
+        args ARGS.split()
+    }
 }
 
 dependencies {
