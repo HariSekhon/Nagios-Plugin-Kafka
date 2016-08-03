@@ -58,6 +58,8 @@ Otherwise the Kafka API would just hang there indefintely as it keeps retrying d
 
 See the ```conf/``` directory for JAAS kerberos configurations.
 
+If you're running the code on a Hortonworks Kafka broker it'll auto-detect the HDP configuration and use that.
+
 ### Build
 
 #### Quick Start - Docker
