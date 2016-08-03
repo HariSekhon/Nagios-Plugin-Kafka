@@ -130,18 +130,18 @@ sonar-scanner:
 test:
 	tests/all.sh
 
-# make run ARGS="<args>"
-.PHONY: run
-run:
-	make exec
-
 # make exec ARGS="<args>"
 .PHONY: exec
 exec:
-	make gradle-exec
+	make run
 
-.PHONY: gradle-exec
-gradle-exec:
+# make run ARGS="<args>"
+.PHONY: run
+run:
+	make gradle-run
+
+.PHONY: gradle-run
+gradle-run:
 	./gradlew run -P ARGS="${ARGS}"
 
 .PHONY: mvn-exec
