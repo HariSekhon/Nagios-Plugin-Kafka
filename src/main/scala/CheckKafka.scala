@@ -36,7 +36,6 @@ object CheckKafka extends App {
 }
 
 class CheckKafka extends CLI {
-    // TODO: replace scalaz.ValidationNel / cats.Validated and combine with |@|
     var brokers: String = ""
     var topic: String = ""
     var partition: Int = 0
@@ -73,6 +72,8 @@ class CheckKafka extends CLI {
         options.addOption("P", "partition", true, "Kafka partition to test (default: 0)")
         options.addOption("l", "list-topics", false, "List Kafka topics and exit")
         options.addOption("p", "list-partitions", false, "List Kafka partitions for the given topic and exit (requires --topic)")
+        options.addOption("K", "kerberos-plaintext", false, "Use Kerberos")
+        options.addOption("S", "kerberos-ssl", false, "Use Kerberos + SSL")
     }
 
     override def processArgs(): Unit = {
@@ -90,6 +91,14 @@ class CheckKafka extends CLI {
         // if you have more than 10000 partitions please contact me to explain and get this limit increased!
         validateInt(partition, "partition", 0, 10000)
         partition = Integer.parseInt(partitionStr)
+        if(cmd.hasOption("kerberos-plaintext")){
+            consumerProps.put("security.protocol", "SASL_PLAINTEXT")
+            producerProps.put("security.protocol", "SASL_PLAINTEXT")
+        }
+        if(cmd.hasOption("kerberos-ssl")){
+            consumerProps.put("security.protocol", "SASL_SSL")
+            producerProps.put("security.protocol", "SASL_SSL")
+        }
         loadProps()
         setupJaas()
     }
@@ -240,13 +249,19 @@ class CheckKafka extends CLI {
         val totalTime = (endTime - startTime) / 1000.0
         val plural =
             if (consumerProps.get("bootstrap.servers").isInstanceOf[String] &&
-                consumerProps.get("bootstrap.servers").asInstanceOf[String].split("\\s+,\\s+").length > 1)
+                consumerProps.get("bootstrap.servers").asInstanceOf[String].split("\\s*,\\s*").length > 1)
             {
                 "s"
             } else {
                 ""
             }
-        val output = s"OK: Kafka broker$plural successfully returned unique message" +
+        val brokermsg =
+            if(getVerbose > 0) {
+                s"broker$plural '" + brokers + "'"
+            } else {
+                s"broker$plural"
+            }
+        val output = s"OK: Kafka $brokermsg successfully returned unique message via topic '$topic'" +
                      s", write time = ${writeTime}s, read time = ${readTime}s, total time = ${totalTime}s " +
                      s"| write_time=${writeTime}s read_time=${readTime}s total_time=${totalTime}s"
         println(output)
