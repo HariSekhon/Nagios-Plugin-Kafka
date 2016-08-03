@@ -36,7 +36,12 @@ and there is an optional convenience shell wrapper script at the top level to ma
 Run against one or more Kafka brokers, comma separated:
 ```
 ./check_kafka --brokers localhost:9092 --topic test
-OK: Kafka broker successfully returned unique message, write time = 0.185s, read time = 0.045s, total time = 1.729s | write_time=0.185s read_time=0.045s total_time=1.729s
+OK: Kafka broker successfully returned unique message via topic 'test' partition '0', write time = 0.185s, read time = 0.045s, total time = 1.729s | write_time=0.185s read_time=0.045s total_time=1.729s
+```
+
+Use the ```--verbose``` switch to also show the brokers list that were tested:
+```
+OK: Kafka broker '<hortonworks_host>:6667' successfully returned unique message via topic 'topic3' partition '0', write time = 0.148s, read time = 0.043s, total time = 0.691s | write_time=0.148s read_time=0.043s total_time=0.691s
 ```
 
 ##### Kafka 0.9+ API Caveats
