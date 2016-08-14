@@ -172,6 +172,10 @@ mvn-versioneye:
 gradle-versioneye:
 	./gradlew versionEyeUpdate
 
+.PHONY: sbt-versioneye
+sbt-versioneye:
+	sbt versioneye:updateProject
+
 .PHONY: scalastyle
 scalastyle:
 	sbt scalastyle
