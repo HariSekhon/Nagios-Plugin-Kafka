@@ -23,7 +23,7 @@ mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 
 enablePlugins(VersionEyePlugin)
 
-existingProjectId in versioneye := "57616cdb0a82b20053182c74"
+existingProjectId in versioneye := "57616d340a82b200276f6669"
 baseUrl in versioneye := "https://www.versioneye.com"
 apiPath in versioneye := "/api/v2"
 publishCrossVersion in versioneye := true
