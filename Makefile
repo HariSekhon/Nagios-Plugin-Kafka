@@ -163,6 +163,7 @@ findbugs:
 versioneye:
 	make mvn-versioneye
 	make gradle-versioneye
+	make sbt-versioneye
 
 .PHONY: mvn-versioneye
 mvn-versioneye:
