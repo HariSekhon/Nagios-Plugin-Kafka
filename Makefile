@@ -44,6 +44,13 @@ sbt:
 	sbt clean assembly
 	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
+# for testing
+.PHONY: all
+all:
+	make mvn
+	make gradle
+	make sbt
+
 .PHONY: lib-mvn
 lib-mvn:
 	make lib-update
