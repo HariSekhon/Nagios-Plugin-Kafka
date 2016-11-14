@@ -46,15 +46,16 @@
       Cannot auto-commit offsets for group ... since the coordinator is unknown
     -->
     <kafka.version>0.9.0.1</kafka.version>
+    <!-- TODO: upgrade to log4j 2 or slf4j -->
     <log4j.version>1.2.17</log4j.version>
-    <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
     <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
     <maven.shade.version>2.4.3</maven.shade.version>
     <scala.mm.version>2.10</scala.mm.version>
     <scala.version>2.10.6</scala.version>
-    <scalatest.version>3.0.0</scalatest.version>
+    <scalatest.version>3.0.1</scalatest.version>
     <scala.maven.plugin.version>3.2.2</scala.maven.plugin.version>
-    <versioneye-maven-plugin.version>3.10.2</versioneye-maven-plugin.version>
+    <versioneye-maven-plugin.version>3.11.0</versioneye-maven-plugin.version>
 
   </properties>
 
