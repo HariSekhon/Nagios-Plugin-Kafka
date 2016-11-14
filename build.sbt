@@ -36,5 +36,5 @@ libraryDependencies ++= Seq (
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
     "org.apache.kafka" %% "kafka" % "0.9.0.1",
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
-    "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+    "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 )
