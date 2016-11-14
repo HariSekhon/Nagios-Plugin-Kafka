@@ -31,7 +31,7 @@ publishCrossVersion in versioneye := true
 // unmanagedBase := baseDirectory.value / "lib/target"
 
 libraryDependencies ++= Seq (
-    "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.0",
+    "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.1",
     // Kafka 0.10 API bug:
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
     "org.apache.kafka" %% "kafka" % "0.9.0.1",
