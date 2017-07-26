@@ -7,7 +7,8 @@
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
-#  If you're using my code you're welcome to connect with me on LinkedIn and optionally send me feedback to help improve or steer this or other code I publish
+#  If you're using my code you're welcome to connect with me on LinkedIn
+#  and optionally send me feedback to help improve or steer this or other code I publish
 #
 #  https://www.linkedin.com/in/harisekhon
 #
@@ -187,3 +188,14 @@ sbt-versioneye:
 .PHONY: scalastyle
 scalastyle:
 	sbt scalastyle
+
+.PHONY: docker-run
+docker-run:
+	docker run -ti --rm harisekhon/nagios-plugin-kafka ${ARGS}
+
+.PHONY: docker-mount
+docker-mount:
+	docker run -ti --rm -v $$PWD:/npk harisekhon/nagios-plugin-kafka bash -c "cd /npk; bash"
+
+.PHONY: mount
+	make docker-mount
