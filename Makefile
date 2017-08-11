@@ -199,3 +199,7 @@ docker-mount:
 
 .PHONY: mount
 	make docker-mount
+
+.PHONY: push
+push:
+	git push
