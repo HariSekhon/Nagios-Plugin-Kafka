@@ -29,18 +29,27 @@ random-build:
 
 .PHONY: mvn
 mvn:
+	@echo ===================================
+	@echo Nagios Plugin - Kafka - Maven Build
+	@echo ===================================
 	make lib-mvn
 	./mvnw clean package
 	ln -sfv target/check_kafka-*.jar check_kafka.jar
 
 .PHONY: gradle
 gradle:
+	@echo ====================================
+	@echo Nagios Plugin - Kafka - Gradle Build
+	@echo ====================================
 	make lib-gradle
 	./gradlew clean shadowJar
 	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
 
 .PHONY: sbt
 sbt:
+	@echo =================================
+	@echo Nagios Plugin - Kafka - SBT Build
+	@echo =================================
 	make lib-sbt
 	sbt clean assembly
 	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
