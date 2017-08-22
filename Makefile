@@ -17,6 +17,23 @@ SHELL=/bin/bash
 
 ARGS=localhost:9092 test
 
+# ===================
+# bootstrap commands:
+
+# Alpine:
+#
+#   apk add --no-cache git make && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
+
+# Debian / Ubuntu:
+#
+#   apt-get update && apt-get install -y make git && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
+
+# RHEL / CentOS:
+#
+#   yum install -y make git && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
+
+# ===================
+
 .PHONY: build
 build:
 	make gradle
