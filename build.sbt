@@ -17,6 +17,7 @@ name := "check_kafka"
 
 version := "0.1.0"
 
+// this must align with lib-java
 scalaVersion := "2.10.6"
 
 mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
