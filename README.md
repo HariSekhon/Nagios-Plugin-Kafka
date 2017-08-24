@@ -109,7 +109,7 @@ SBT:
 make sbt
 ```
 
-#### Tests
+#### Testing
 
 [Continuous Integration](https://travis-ci.org/HariSekhon/nagios-plugin-kafka) is run on this repo with tests for success and failure scenarios:
 - unit tests for the custom supporting [java library](https://github.com/harisekhon/lib-java)
