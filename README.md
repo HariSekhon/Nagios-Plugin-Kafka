@@ -111,12 +111,18 @@ make sbt
 
 #### Tests
 
-There are tests in the ```tests/``` directory which use Kafka Docker containers I've set up on [DockerHub](https://hub.docker.com/r/harisekhon/kafka).
+[Continuous Integration](https://travis-ci.org/HariSekhon/nagios-plugin-kafka) is run on this repo with tests for success and failure scenarios:
+- unit tests for the custom supporting [java library](https://github.com/harisekhon/lib-java)
+- integration tests of the top level programs using the libraries for things like option parsing
+- [functional tests](https://github.com/HariSekhon/nagios-plugin-kafka/tree/master/tests) for the top level programs using [Docker containers](https://hub.docker.com/u/harisekhon/)
 
 To trigger all tests run:
+
 ```
 make test
 ```
+
+which will start with the underlying libraries, then move on to top level integration tests and functional tests using docker containers if docker is available.
 
 ### Kafka 0.8 support - Alternative Perl & Python Kafka API Nagios Plugins
 
