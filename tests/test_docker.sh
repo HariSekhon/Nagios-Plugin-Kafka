@@ -14,7 +14,6 @@
 #
 
 set -euo pipefail
-DEBUG="${DEBUG:-}"
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$(cd "$(dirname "$0")" && pwd)"
 
@@ -27,9 +26,9 @@ section "Docker Image"
 
 export DOCKER_IMAGE="harisekhon/nagios-plugin-kafka"
 
-if is_CI && is_docker_available; then
+if is_docker_available; then
+    [ -n "${NO_DOCKER:-}" ] && exit 0
     [ -n "${NO_PULL:-}" ] ||
         docker pull "$DOCKER_IMAGE"
-    set +e
-    docker run --rm -e "DEBUG=$DEBUG" -e "NO_GIT=1" -e TRAVIS="${TRAVIS:-}" "$DOCKER_IMAGE" tests/help.sh
+    docker run --rm -e "DEBUG=${DEBUG:-}" -e TRAVIS="${TRAVIS:-}" "$DOCKER_IMAGE" tests/help.sh
 fi
