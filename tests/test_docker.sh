@@ -30,5 +30,5 @@ if is_docker_available; then
     [ -n "${NO_DOCKER:-}" ] && exit 0
     [ -n "${NO_PULL:-}" ] ||
         docker pull "$DOCKER_IMAGE"
-    docker run --rm -e "DEBUG=${DEBUG:-}" -e TRAVIS="${TRAVIS:-}" "$DOCKER_IMAGE" tests/help.sh
+    docker run --rm -e DEBUG="${DEBUG:-}" -e TRAVIS="${TRAVIS:-}" "$DOCKER_IMAGE" tests/help.sh
 fi
