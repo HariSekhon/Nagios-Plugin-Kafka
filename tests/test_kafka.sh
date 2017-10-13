@@ -63,8 +63,23 @@ test_kafka(){
     launch_container "$DOCKER_IMAGE:$version" "$DOCKER_CONTAINER" $KAFKA_PORT $ZOOKEEPER_PORT
     when_ports_available $startupwait $KAFKA_HOST $KAFKA_PORT
     hr
-    echo "creating Kafka test topic"
-    docker exec -ti "$DOCKER_CONTAINER" kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic "$KAFKA_TOPIC" || :
+    echo "checking if Kafka topic already exists:"
+    set +o pipefail
+    if docker-compose exec "$DOCKER_SERVICE" kafka-topics.sh --zookeeper localhost:2181 --list | tee /dev/stderr | grep -q "^[[:space:]]*$KAFKA_TOPIC[[:space:]]*$"; then
+        echo "Kafka topic $KAFKA_TOPIC already exists, continuing"
+    else
+        echo "creating Kafka test topic:"
+        for i in {1..20}; do
+            echo "try $i / 10"
+            # Older versions of Kafka eg. 0.8 seem to return 0 even when this fails so check the output instead
+            if docker-compose exec "$DOCKER_SERVICE" kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic "$KAFKA_TOPIC" | tee /dev/stderr | grep -q -e 'Created topic' -e 'already exists'; then
+                break
+            fi
+            echo
+            sleep 1
+        done
+    fi
+    set -o pipefail
     if [ -n "${NOTESTS:-}" ]; then
         return 0
     fi
