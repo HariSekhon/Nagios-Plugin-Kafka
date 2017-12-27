@@ -18,7 +18,7 @@ name := "check_kafka"
 version := "0.1.0"
 
 // this must align with lib-java
-scalaVersion := "2.10.6"
+scalaVersion := "2.11.6"
 
 mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 
@@ -35,7 +35,7 @@ libraryDependencies ++= Seq (
     "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.2",
     // Kafka 0.10 API bug:
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
-    "org.apache.kafka" %% "kafka" % "0.9.0.1",
+    "org.apache.kafka" %% "kafka" % "0.11.0.1",
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
     "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 )
