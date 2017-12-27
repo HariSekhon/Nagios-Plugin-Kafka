@@ -51,16 +51,17 @@ mvn:
 	@echo ===================================
 	make lib-mvn
 	./mvnw clean package
-	ln -sfv target/check_kafka-*.jar check_kafka.jar
+	ln -sfv target/check_kafka-*.jar check_kafka_broker.jar
 
 .PHONY: gradle
 gradle:
 	@echo ====================================
 	@echo Nagios Plugin - Kafka - Gradle Build
 	@echo ====================================
+	yum install -y java-1.8.0-openjdk-devel
 	make lib-gradle
 	./gradlew clean shadowJar
-	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
+	ln -sfv build/libs/check_kafka-*.jar check_kafka_broker.jar
 
 .PHONY: sbt
 sbt:
@@ -69,7 +70,7 @@ sbt:
 	@echo =================================
 	make lib-sbt
 	sbt clean assembly
-	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
+	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka_broker.jar
 
 # for testing
 .PHONY: all
@@ -100,7 +101,7 @@ clean:
 	./mvnw clean || :
 	sbt clean || :
 	./gradlew clean || :
-	rm -f check_kafka.jar
+	rm -f check_kafka_broker.jar
 
 .PHONY: deep-clean
 deep-clean:
