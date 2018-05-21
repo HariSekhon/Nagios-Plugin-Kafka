@@ -74,7 +74,7 @@ test_kafka(){
     else
         echo "creating Kafka test topic:"
         for i in {1..20}; do
-            echo "try $i / 10"
+            echo "try $i / 20"
             # Older versions of Kafka eg. 0.8 seem to return 0 even when this fails so check the output instead
             if docker-compose exec "$DOCKER_SERVICE" kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic "$KAFKA_TOPIC" | tee /dev/stderr | grep -q -e 'Created topic' -e 'already exists'; then
                 break
