@@ -52,15 +52,19 @@ export DOCKER_CONTAINER="nagios-plugins-kafka-test"
 
 export KAFKA_TOPIC="nagios-plugins-kafka-test"
 
+check_docker_available
+
 # needs to be longer than 10 to allow Kafka to settle so topic creation works
-startupwait=20
+startupwait 20
 
 test_kafka(){
     local version="$1"
     echo "Setting up Apache Kafka $version test container"
     hr
-    local DOCKER_OPTS="-e ADVERTISED_HOSTNAME=$KAFKA_HOST"
-    launch_container "$DOCKER_IMAGE:$version" "$DOCKER_CONTAINER" $KAFKA_PORT $ZOOKEEPER_PORT
+    export ADVERTISED_HOSTNAME="$KAFKA_HOST"
+    docker_compose_pull
+    VERSION="$version" docker-compose up -d
+    hr
     when_ports_available $startupwait $KAFKA_HOST $KAFKA_PORT
     hr
     echo "checking if Kafka topic already exists:"
@@ -87,7 +91,8 @@ test_kafka(){
     # 'scala' command not found on Travis CI
     ./check_kafka -B $KAFKA_HOST:$KAFKA_PORT -T "$KAFKA_TOPIC"
     hr
-    delete_container
+    [ -n "${KEEPDOCKER:-}" ] ||
+    docker-compose down
     echo
 }
 
