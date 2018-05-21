@@ -36,20 +36,20 @@ ARGS=localhost:9092 test
 
 .PHONY: build
 build:
-	make gradle
+	$(MAKE) gradle
 
 # used by CI
 .PHONY: random-build
 random-build:
 	@# SBT + Maven Surefire plugin both get buffer overflow on openjdk7 :-/
-	@x=$$(bash-tools/random_select.sh build mvn gradle sbt); echo make $$x; make $$x
+	@x=$$(bash-tools/random_select.sh build mvn gradle sbt); echo $(MAKE) $$x; $(MAKE) $$x
 
 .PHONY: mvn
 mvn:
 	@echo ===================================
 	@echo Nagios Plugin - Kafka - Maven Build
 	@echo ===================================
-	make lib-mvn
+	$(MAKE) lib-mvn
 	./mvnw clean package
 	ln -sfv target/check_kafka-*.jar check_kafka.jar
 
@@ -58,7 +58,7 @@ gradle:
 	@echo ====================================
 	@echo Nagios Plugin - Kafka - Gradle Build
 	@echo ====================================
-	make lib-gradle
+	$(MAKE) lib-gradle
 	./gradlew clean shadowJar
 	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
 
@@ -67,36 +67,36 @@ sbt:
 	@echo =================================
 	@echo Nagios Plugin - Kafka - SBT Build
 	@echo =================================
-	make lib-sbt
+	$(MAKE) lib-sbt
 	sbt clean assembly
 	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
 
 # for testing
 .PHONY: all
 all:
-	make mvn
-	make gradle
-	make sbt
+	$(MAKE) mvn
+	$(MAKE) gradle
+	$(MAKE) sbt
 
 .PHONY: lib-mvn
 lib-mvn:
-	make lib-update
-	cd lib && make mvn
+	$(MAKE) lib-update
+	cd lib && $(MAKE) mvn
 
 .PHONY: lib-gradle
 lib-gradle:
-	make lib-update
-	cd lib && make gradle
+	$(MAKE) lib-update
+	cd lib && $(MAKE) gradle
 
 .PHONY: lib-sbt
 lib-sbt:
-	make lib-update
-	cd lib && make sbt
+	$(MAKE) lib-update
+	cd lib && $(MAKE) sbt
 	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
 
 .PHONY: clean
 clean:
-	cd lib && make clean
+	cd lib && $(MAKE) clean
 	./mvnw clean || :
 	sbt clean || :
 	./gradlew clean || :
@@ -104,19 +104,19 @@ clean:
 
 .PHONY: deep-clean
 deep-clean:
-	cd lib && make deep-clean
-	make clean
+	cd lib && $(MAKE) deep-clean
+	$(MAKE) clean
 	rm -rf .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot
 
 .PHONY: update
 update:
 	git pull
-	make lib-update
-	make
+	$(MAKE) lib-update
+	$(MAKE)
 
 .PHONY: update2
 update2:
-	make update-no-recompile
+	$(MAKE) update-no-recompile
 
 .PHONY: update-no-recompile
 update-no-recompile:
@@ -132,20 +132,20 @@ update-submodules:
 	git submodule update --init --remote
 .PHONY: updatem
 updatem:
-	make update-submodules
+	$(MAKE) update-submodules
 
 # useful for quicker compile testing
 .PHONY: p
 p:
-	make package
+	$(MAKE) package
 .PHONY: package
 package:
-	make lib
+	$(MAKE) lib
 	sbt package
 
 .PHONY: sonar
 sonar:
-	make gradle-sonar
+	$(MAKE) gradle-sonar
 
 .PHONY: gradle-sonar
 gradle-sonar:
@@ -167,12 +167,12 @@ test:
 # make exec ARGS="<args>"
 .PHONY: exec
 exec:
-	make run
+	$(MAKE) run
 
 # make run ARGS="<args>"
 .PHONY: run
 run:
-	make gradle-run
+	$(MAKE) gradle-run
 
 .PHONY: gradle-run
 gradle-run:
@@ -195,9 +195,9 @@ findbugs:
 
 .PHONY: versioneye
 versioneye:
-	make mvn-versioneye
-	make gradle-versioneye
-	make sbt-versioneye
+	$(MAKE) mvn-versioneye
+	$(MAKE) gradle-versioneye
+	$(MAKE) sbt-versioneye
 
 .PHONY: mvn-versioneye
 mvn-versioneye:
@@ -224,7 +224,7 @@ docker-mount:
 	docker run -ti --rm -v $$PWD:/npk harisekhon/nagios-plugin-kafka bash -c "cd /npk; bash"
 
 .PHONY: mount
-	make docker-mount
+	$(MAKE) docker-mount
 
 .PHONY: push
 push:
