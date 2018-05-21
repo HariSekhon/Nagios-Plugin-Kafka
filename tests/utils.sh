@@ -17,6 +17,10 @@ set -eu
 [ -n "${DEBUG:-}" ] && set -x
 srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+srcdir_kafka_utils="$srcdir"
+
 #. "$srcdir/excluded.sh"
 . "$srcdir/../bash-tools/utils.sh"
 . "$srcdir/../bash-tools/docker.sh"
+
+srcdir="$srcdir_kafka_utils"
