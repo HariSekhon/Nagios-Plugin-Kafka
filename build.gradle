@@ -63,7 +63,7 @@ run {
 }
 
 dependencies {
-    compile group: 'com.linkedin.harisekhon', name: 'harisekhon-utils', version:'1.17.2'
+    compile group: 'com.linkedin.harisekhon', name: 'harisekhon-utils', version:'1.17.3'
     // Kafka 0.10 API bug:
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
     compile group: 'org.apache.kafka', name: "kafka_${scalaVersion}", version:'0.9.0.1'

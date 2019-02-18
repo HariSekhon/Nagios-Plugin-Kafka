@@ -37,7 +37,7 @@
     <java.version>7</java.version>
     -->
 
-    <harisekhon-utils.version>1.17.2</harisekhon-utils.version>
+    <harisekhon-utils.version>1.17.3</harisekhon-utils.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
     <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
     <junit.version>4.12</junit.version>

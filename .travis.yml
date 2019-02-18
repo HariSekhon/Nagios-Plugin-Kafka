@@ -30,7 +30,7 @@ scala:
 #sudo: required
 
 install:
-  - make random-build
+  - travis_retry make random-build
 
 notifications:
   email: false
@@ -40,7 +40,7 @@ branches:
     - master
 
 script:
-  - make test
+  - travis_retry make test
 
 services:
   - docker
