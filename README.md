@@ -1,4 +1,4 @@
-Kafka Scala API Tester - Advanced Nagios Plugin / CLI Tool with Kerberos support
+Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 ==============================
 [![Build Status](https://travis-ci.org/HariSekhon/nagios-plugin-kafka.svg?branch=master)](https://travis-ci.org/HariSekhon/nagios-plugin-kafka)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de500bf4f90d401ba5c98ed903c8a612)](https://www.codacy.com/app/harisekhon/nagios-plugin-kafka)
