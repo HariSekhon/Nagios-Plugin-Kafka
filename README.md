@@ -1,4 +1,4 @@
-Kafka Scala API Tester - Advanced Nagios Plugin / CLI Tool with Kerberos support
+Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 ==============================
 [![Build Status](https://travis-ci.org/HariSekhon/nagios-plugin-kafka.svg?branch=master)](https://travis-ci.org/HariSekhon/nagios-plugin-kafka)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de500bf4f90d401ba5c98ed903c8a612)](https://www.codacy.com/app/harisekhon/nagios-plugin-kafka)
@@ -111,7 +111,7 @@ make sbt
 
 ##### Custom TLDs #####
 
-If using bespoke internal domains such as ```.local``` or ```.intranet``` that aren't part of the official IANA TLD list then this is additionally supported via a custom configuration file [resources/custom_tlds.txt](https://github.com/HariSekhon/lib/blob/master/resources/custom_tlds.txt) containing one TLD per line, with support for # comment prefixes. Just add your bespoke internal TLD to the file and it will then pass the host/domain/fqdn validations.
+If using bespoke internal domains such as ```.local``` or ```.intranet``` that aren't part of the official IANA TLD list then this is additionally supported via a custom configuration file [lib/resources/custom_tlds.txt](https://github.com/HariSekhon/lib-java/blob/master/src/main/resources/tlds-alpha-by-domain.txt) containing one TLD per line, with support for # comment prefixes. Just add your bespoke internal TLD to the file and it will then pass the host/domain/fqdn validations.
 
 #### Testing
 
