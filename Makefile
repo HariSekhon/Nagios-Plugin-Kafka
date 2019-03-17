@@ -17,6 +17,8 @@ SHELL=/bin/bash
 
 ARGS=localhost:9092 test
 
+DOCKER_IMAGE := harisekhon/nagios-plugin-kafka
+
 # ===================
 # bootstrap commands:
 
@@ -34,9 +36,19 @@ ARGS=localhost:9092 test
 
 # ===================
 
+ifneq ("$(wildcard bash-tools/Makefile.in)", "")
+	include bash-tools/Makefile.in
+endif
+
 .PHONY: build
 build:
+	$(MAKE) init
+	if [ -z "$(CPANM)" ]; then make; exit $$?; fi
 	$(MAKE) gradle
+
+.PHONY: init
+init:
+	git submodule update --init --recursive
 
 # used by CI
 .PHONY: random-build
@@ -49,6 +61,8 @@ mvn:
 	@echo ===================================
 	@echo Nagios Plugin - Kafka - Maven Build
 	@echo ===================================
+	$(MAKE) init
+	if [ -z "$(CPANM)" ]; then make mvn; exit $$?; fi
 	$(MAKE) lib-mvn
 	./mvnw clean package
 	ln -sfv target/check_kafka-*.jar check_kafka.jar
@@ -58,6 +72,8 @@ gradle:
 	@echo ====================================
 	@echo Nagios Plugin - Kafka - Gradle Build
 	@echo ====================================
+	$(MAKE) init
+	if [ -z "$(CPANM)" ]; then make gradle; exit $$?; fi
 	$(MAKE) lib-gradle
 	./gradlew clean shadowJar
 	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
@@ -67,6 +83,8 @@ sbt:
 	@echo =================================
 	@echo Nagios Plugin - Kafka - SBT Build
 	@echo =================================
+	$(MAKE) init
+	if [ -z "$(CPANM)" ]; then make sbt; exit $$?; fi
 	$(MAKE) lib-sbt
 	sbt clean assembly
 	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
@@ -80,17 +98,14 @@ all:
 
 .PHONY: lib-mvn
 lib-mvn:
-	$(MAKE) lib-update
 	cd lib && $(MAKE) mvn
 
 .PHONY: lib-gradle
 lib-gradle:
-	$(MAKE) lib-update
 	cd lib && $(MAKE) gradle
 
 .PHONY: lib-sbt
 lib-sbt:
-	$(MAKE) lib-update
 	cd lib && $(MAKE) sbt
 	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
 
@@ -108,32 +123,6 @@ deep-clean:
 	$(MAKE) clean
 	rm -rf .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot
 
-.PHONY: update
-update:
-	git pull
-	$(MAKE) lib-update
-	$(MAKE)
-
-.PHONY: update2
-update2:
-	$(MAKE) update-no-recompile
-
-.PHONY: update-no-recompile
-update-no-recompile:
-	git pull
-	git submodule update --init --recursive
-
-.PHONY: lib-update
-lib-update:
-	git submodule update --init
-
-.PHONY: update-submodules
-update-submodules:
-	git submodule update --init --remote
-.PHONY: updatem
-updatem:
-	$(MAKE) update-submodules
-
 # useful for quicker compile testing
 .PHONY: p
 p:
@@ -142,10 +131,6 @@ p:
 package:
 	$(MAKE) lib
 	sbt package
-
-.PHONY: sonar
-sonar:
-	$(MAKE) gradle-sonar
 
 .PHONY: gradle-sonar
 gradle-sonar:
@@ -170,9 +155,10 @@ exec:
 	$(MAKE) run
 
 # make run ARGS="<args>"
-.PHONY: run
-run:
-	$(MAKE) gradle-run
+# clashes with bash-tools/Makefile.in
+#.PHONY: run
+#run:
+#	$(MAKE) gradle-run
 
 .PHONY: gradle-run
 gradle-run:
@@ -214,18 +200,3 @@ sbt-versioneye:
 .PHONY: scalastyle
 scalastyle:
 	sbt scalastyle
-
-.PHONY: docker-run
-docker-run:
-	docker run -ti --rm harisekhon/nagios-plugin-kafka ${ARGS}
-
-.PHONY: docker-mount
-docker-mount:
-	docker run -ti --rm -v $$PWD:/npk harisekhon/nagios-plugin-kafka bash -c "cd /npk; bash"
-
-.PHONY: mount
-	$(MAKE) docker-mount
-
-.PHONY: push
-push:
-	git push
