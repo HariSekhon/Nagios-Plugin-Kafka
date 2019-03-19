@@ -1,6 +1,6 @@
 Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 ==============================
-[![Build Status](https://travis-ci.org/HariSekhon/nagios-plugin-kafka.svg?branch=master)](https://travis-ci.org/HariSekhon/nagios-plugin-kafka)
+[![Build Status](https://travis-ci.org/HariSekhon/Nagios-Plugin-Kafka.svg?branch=master)](https://travis-ci.org/HariSekhon/Nagios-Plugin-Kafka)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/de500bf4f90d401ba5c98ed903c8a612)](https://www.codacy.com/app/harisekhon/nagios-plugin-kafka)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20OS%20X-blue.svg)](https://github.com/harisekhon/nagios-plugin-kafka)
 [![DockerHub](https://img.shields.io/badge/docker-available-blue.svg)](https://hub.docker.com/r/harisekhon/nagios-plugins/)
