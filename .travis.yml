@@ -27,6 +27,8 @@ scala:
   - 2.10.4
   - 2.11.2
 
+dist: trusty
+
 #sudo: required
 
 install:
