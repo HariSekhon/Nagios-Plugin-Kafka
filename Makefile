@@ -200,3 +200,7 @@ sbt-versioneye:
 .PHONY: scalastyle
 scalastyle:
 	sbt scalastyle
+
+.PHONY: travis
+travis:
+	travis_last_log.py /Nagios-Plugin-Kafka
