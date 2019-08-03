@@ -13,6 +13,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+REPO := HariSekhon/Nagios-Plugin-Kafka
+
 SHELL=/bin/bash
 
 ARGS=localhost:9092 test
@@ -200,7 +202,3 @@ sbt-versioneye:
 .PHONY: scalastyle
 scalastyle:
 	sbt scalastyle
-
-.PHONY: travis
-travis:
-	travis_last_log.py /Nagios-Plugin-Kafka
