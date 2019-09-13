@@ -27,9 +27,9 @@ scala:
   - 2.10.4
   - 2.11.2
 
-os:
-  - linux
-  - osx
+#os:
+#  - linux
+#  - osx
 
 dist: trusty
 
