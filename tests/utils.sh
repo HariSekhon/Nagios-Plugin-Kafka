@@ -20,7 +20,7 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 srcdir_kafka_utils="$srcdir"
 
 #. "$srcdir/excluded.sh"
-. "$srcdir/../bash-tools/utils.sh"
-. "$srcdir/../bash-tools/docker.sh"
+. "$srcdir/../bash-tools/lib/utils.sh"
+. "$srcdir/../bash-tools/lib/docker.sh"
 
 srcdir="$srcdir_kafka_utils"
