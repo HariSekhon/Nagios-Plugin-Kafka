@@ -13,9 +13,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+SHELL=/bin/bash
+
 REPO := HariSekhon/Nagios-Plugin-Kafka
 
-SHELL=/bin/bash
+CODE_FILES := $(shell find . -type f -name '*.java' -o -type f -name '*.scala' | grep -v -e bash-tools -e /lib/)
 
 ARGS=localhost:9092 test
 
