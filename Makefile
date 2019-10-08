@@ -13,7 +13,11 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-SHELL=/bin/bash
+ifneq ("$(wildcard bash-tools/Makefile.in)", "")
+	include bash-tools/Makefile.in
+endif
+
+SHELL := /bin/bash
 
 REPO := HariSekhon/Nagios-Plugin-Kafka
 
@@ -39,10 +43,6 @@ DOCKER_IMAGE := harisekhon/nagios-plugin-kafka
 #   yum install -y make git && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
 
 # ===================
-
-ifneq ("$(wildcard bash-tools/Makefile.in)", "")
-	include bash-tools/Makefile.in
-endif
 
 .PHONY: build
 build:
