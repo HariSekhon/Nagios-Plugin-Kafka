@@ -21,7 +21,7 @@ cd "$srcdir/..";
 
 . bash-tools/lib/utils.sh
 
-bash-tools/all.sh
+bash-tools/check_all.sh
 
 section "Running Nagios Plugin Kafka ALL"
 
