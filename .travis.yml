@@ -15,10 +15,15 @@
 
 language: scala
 jdk:
-  - oraclejdk8
+  # looks like Travis CI stopped supporting Java 8?
+  #- oraclejdk8
+  - oraclejdk9
   # SonarQube plugin version 2.2 is now built with Java 8, doesn't support Java 7
   #- oraclejdk7
   - openjdk8
+  - openjdk9
+  - openjdk10
+  - openjdk11
   # dropped OpenJDK 7 as it's getting buffer overflows from both SBT and Maven Surefire
   # - openjdk7
 
