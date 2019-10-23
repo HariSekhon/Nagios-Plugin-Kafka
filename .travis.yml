@@ -38,7 +38,8 @@ scala:
 #  - linux
 #  - osx
 
-dist: bionic
+#dist: bionic
+dist: xenial
 
 #sudo: required
 
