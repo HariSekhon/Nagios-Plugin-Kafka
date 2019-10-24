@@ -111,7 +111,7 @@ lib-gradle:
 .PHONY: lib-sbt
 lib-sbt:
 	cd lib && $(MAKE) sbt
-	sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
+	@#sbt eclipse || echo "Ignore this last error, you simply don't have the SBT eclipse plugin, it's optional"
 
 .PHONY: clean
 clean:
