@@ -24,7 +24,8 @@ jdk:
   - oraclejdk11
   # SonarQube plugin version 2.2 is now built with Java 8, doesn't support Java 7
   #- oraclejdk7
-  - openjdk8
+  # Travis CI doesn't support this any more on new bionic build
+  #- openjdk8
   - openjdk9
   - openjdk11
   # dropped OpenJDK 7 as it's getting buffer overflows from both SBT and Maven Surefire
