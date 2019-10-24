@@ -15,14 +15,14 @@
 
 // https://github.com/sbt/sbt-assembly
 
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
-  {
+assemblyMergeStrategy in assembly := {
     case PathList("META-INF", "maven","org.slf4j","slf4j-api", p) if p.startsWith("pom")        => MergeStrategy.discard
     case PathList("META-INF", "maven","commons-lang","commons-lang", p) if p.startsWith("pom")  => MergeStrategy.discard
     case PathList("com", "google", "common", "base", p)                                         => MergeStrategy.first
     case PathList("org", "apache", "commons", p @ _*)                                           => MergeStrategy.first
     case PathList("jline", p @ _*)    => MergeStrategy.first
     case PathList("log4j.properties") => MergeStrategy.first
-    case x => old(x)
-  }
+	case x =>
+		val oldStrategy = (assemblyMergeStrategy in assembly).value
+		oldStrategy(x)
 }
