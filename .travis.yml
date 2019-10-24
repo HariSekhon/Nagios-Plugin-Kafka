@@ -15,10 +15,11 @@
 
 language: scala
 jdk:
-  - oraclejdk8
+  # not available any more
+  #- oraclejdk8
   - oraclejdk9
   # oraclejdk10 EOL Oct 2018
-  - oraclejdk10
+  #- oraclejdk10
   - oraclejdk11
   # SonarQube plugin version 2.2 is now built with Java 8, doesn't support Java 7
   #- oraclejdk7
@@ -38,8 +39,8 @@ scala:
 #  - linux
 #  - osx
 
-#dist: bionic
-dist: xenial
+#dist: xenial
+dist: bionic
 
 #sudo: required
 
