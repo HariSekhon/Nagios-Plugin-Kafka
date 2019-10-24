@@ -18,16 +18,16 @@ name := "check_kafka"
 version := "0.1.0"
 
 // this must align with lib-java
-scalaVersion := "2.10.6"
+scalaVersion := "2.12.8"
 
 mainClass := Some("com.linkedin.harisekhon.kafka.CheckKafka")
 
-enablePlugins(VersionEyePlugin)
+//enablePlugins(VersionEyePlugin)
 
-existingProjectId in versioneye := "57616d340a82b200276f6669"
-baseUrl in versioneye := "https://www.versioneye.com"
-apiPath in versioneye := "/api/v2"
-publishCrossVersion in versioneye := true
+// existingProjectId in versioneye := "57616d340a82b200276f6669"
+// baseUrl in versioneye := "https://www.versioneye.com"
+// apiPath in versioneye := "/api/v2"
+// publishCrossVersion in versioneye := true
 
 // unmanagedBase := baseDirectory.value / "lib/target"
 
@@ -35,7 +35,7 @@ libraryDependencies ++= Seq (
     "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.6",
     // Kafka 0.10 API bug:
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
-    "org.apache.kafka" %% "kafka" % "0.9.0.1",
+    "org.apache.kafka" %% "kafka" % "1.1.1",
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
     "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 )
