@@ -123,9 +123,10 @@ clean:
 
 .PHONY: deep-clean
 deep-clean:
-	cd lib && $(MAKE) deep-clean
 	$(MAKE) clean
-	rm -rf .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot
+	cd lib && $(MAKE) deep-clean
+	@# done in lib
+	@#rm -rf .gradle ~/.gradle/{caches,native,wrapper} ~/.m2/{repository,wrapper} ~/.ivy2 ~/.sbt/boot
 
 # useful for quicker compile testing
 .PHONY: p
