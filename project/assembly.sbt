@@ -13,7 +13,9 @@
 //  http://www.linkedin.com/in/harisekhon
 //
 
-// for SBT 0.13.6+
-addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.13.0")
+// SBT 1.3.3
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.10")
+// SBT 0.13.6
+//addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.13.0")
 // for SBT < 0.13.6
 //addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.11.2")
