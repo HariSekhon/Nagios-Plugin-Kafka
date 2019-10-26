@@ -16,6 +16,11 @@
 version: ~> 1.0
 
 language: scala
+scala:
+  - 2.10.6
+  - 2.11.11
+  - 2.12.2
+
 jdk:
   # not available any more
   #- oraclejdk8
@@ -32,11 +37,6 @@ jdk:
   - openjdk11
   # dropped OpenJDK 7 as it's getting buffer overflows from both SBT and Maven Surefire
   # - openjdk7
-
-scala:
-  - 2.10.4
-  - 2.11.2
-  - 2.12.8
 
 #os:
 #  - linux
