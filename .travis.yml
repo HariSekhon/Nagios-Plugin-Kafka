@@ -50,7 +50,8 @@ before_install:
   - sudo rm -rf "${TRAVIS_ROOT}/var/lib/apt/lists/"*
 
 install:
-  - travis_retry make random-build
+  #- travis_retry make random-build
+  - travis_retry make all
 
 notifications:
   email: false
@@ -59,8 +60,8 @@ branches:
   only:
     - master
 
-script:
-  - travis_retry make test
+#script:
+#  - travis_retry make test
 
 services:
   - docker
