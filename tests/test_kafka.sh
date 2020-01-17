@@ -20,6 +20,7 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$srcdir/.."
 
+# shellcheck disable=SC1090
 . "$srcdir/utils.sh"
 
 echo "
@@ -30,9 +31,9 @@ echo "
 
 # TODO: latest container 2.11_0.10 doesn't work yet, no leader takes hold
 #export KAFKA_VERSIONS="2.11_0.10 2.11_0.10 latest"
-export KAFKA_VERSIONS="${@:-latest 2.10-0.8 2.11-0.8 2.10-0.9 2.11-0.9}"
+export KAFKA_VERSIONS="${*:-latest 2.10-0.8 2.11-0.8 2.10-0.9 2.11-0.9}"
 # TODO: hangs on 0.8, fix later
-export KAFKA_VERSIONS="${@:-2.10-0.9}"
+export KAFKA_VERSIONS="${*:-2.10-0.9}"
 
 if ! is_docker_available; then
     echo 'WARNING: Docker not found, skipping Kafka checks!!!'
@@ -65,10 +66,14 @@ test_kafka(){
     docker_compose_pull
     VERSION="$version" docker-compose up -d
     hr
-    when_ports_available $startupwait $KAFKA_HOST $KAFKA_PORT
+    # startupwait assigned in lib
+    # shellcheck disable=SC2154
+    when_ports_available "$startupwait" "$KAFKA_HOST" "$KAFKA_PORT"
     hr
     echo "checking if Kafka topic already exists:"
     set +o pipefail
+    # false positive - not an array but a regex with kafka topic var followed by character class
+    # shellcheck disable=SC1087
     if docker-compose exec "$DOCKER_SERVICE" kafka-topics.sh --zookeeper localhost:2181 --list | tee /dev/stderr | grep -q "^[[:space:]]*$KAFKA_TOPIC[[:space:]]*$"; then
         echo "Kafka topic $KAFKA_TOPIC already exists, continuing"
     else
@@ -89,13 +94,15 @@ test_kafka(){
     fi
     hr
     # 'scala' command not found on Travis CI
-    ./check_kafka -B $KAFKA_HOST:$KAFKA_PORT -T "$KAFKA_TOPIC"
+    ./check_kafka -B "$KAFKA_HOST:$KAFKA_PORT" -T "$KAFKA_TOPIC"
     hr
     [ -n "${KEEPDOCKER:-}" ] ||
     docker-compose down
     echo
 }
 
+# want splitting
+# shellcheck disable=SC2086
 for version in $(ci_sample $KAFKA_VERSIONS); do
     test_kafka $version
 done
