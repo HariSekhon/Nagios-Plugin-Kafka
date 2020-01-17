@@ -20,6 +20,7 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$srcdir/..";
 
+# shellcheck disable=SC1091
 . ./tests/utils.sh
 
 section "Testing --help"
@@ -28,10 +29,9 @@ help_start_time="$(start_timer)"
 
 test_help(){
     local prog="$1"
-    optional_cmd=""
     echo "./$prog --help"
     set +e
-    ./$prog --help # >/dev/null
+    "./$prog" --help # >/dev/null
     status=$?
     set -e
     [ $status = 3 ] || { echo "status code for $prog --help was $status not expected 3"; exit 1; }
