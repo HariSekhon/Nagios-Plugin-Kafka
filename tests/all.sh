@@ -19,12 +19,11 @@ srcdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$srcdir/..";
 
+# shellcheck disable=SC1091
 . bash-tools/lib/utils.sh
 
 bash-tools/check_all.sh
 
 section "Running Nagios Plugin Kafka ALL"
 
-for script in $(find tests -name 'test*.sh'); do
-    $script
-done
+find tests -name 'test*.sh' -exec {} \;
