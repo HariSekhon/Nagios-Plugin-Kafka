@@ -17,8 +17,9 @@ version: ~> 1.0
 
 language: scala
 scala:
-  - 2.10.6
-  - 2.11.11
+  # Travis CI broke switching during test phase for these versions
+  #- 2.10.6
+  #- 2.11.11
   - 2.12.8
 
 jdk:
