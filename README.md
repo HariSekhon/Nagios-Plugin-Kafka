@@ -21,9 +21,12 @@ See [The Advanced Nagios Plugins Collection](https://github.com/harisekhon/nagio
 
 Hari Sekhon
 
-Big Data Contractor, United Kingdom
+Cloud & Big Data Contractor, United Kingdom
+
+(ex-Cloudera, former Hortonworks Consultant)
 
 https://www.linkedin.com/in/harisekhon
+###### (you're welcome to connect with me on LinkedIn)
 
 ## Intro
 
