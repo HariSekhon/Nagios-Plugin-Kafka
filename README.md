@@ -9,6 +9,14 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![Dependency Status](https://www.versioneye.com/user/projects/57616d340a82b200276f6669/badge.svg)](https://www.versioneye.com/user/projects/57616d340a82b200276f6669)
 -->
 
+[![CI Mac](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Mac%22)
+[![CI Ubuntu](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Ubuntu%22)
+[![CI CentOS](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20CentOS/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+CentOS%22)
+[![CI CentOS 6](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20CentOS%206/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+CentOS+6%22)
+[![CI CentOS 7](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20CentOS%207/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+CentOS+7%22)
+[![CI CentOS 8](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20CentOS%208/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+CentOS+8%22)
+[![CI Alpine](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Alpine/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Alpine%22)
+
 Kafka 0.9+ API CLI Tester & Advanced Nagios Plugin with Kerberos support, written in Scala.
 
 Tested on Hortonworks HDP 2.4.0 with Kerberos + Ranger ACLs and Apache Kafka 0.8.x / 0.9.0.1 [docker images](https://hub.docker.com/r/harisekhon/kafka) with regular ACLs.
