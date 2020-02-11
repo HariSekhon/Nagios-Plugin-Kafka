@@ -17,7 +17,9 @@ ifneq ("$(wildcard bash-tools/Makefile.in)", "")
 	include bash-tools/Makefile.in
 endif
 
-SHELL := /bin/bash
+# breaks in Alpine
+#SHELL := /bin/bash
+SHELL := sh
 
 REPO := HariSekhon/Nagios-Plugin-Kafka
 
