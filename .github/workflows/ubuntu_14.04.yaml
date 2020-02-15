@@ -11,6 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# disabled due to old Java 7 JDK and Gradle 5 needs Java >= 8
+
 name: CI Ubuntu 14.04
 
 #env:
