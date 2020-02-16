@@ -11,6 +11,8 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+# has Java 7 but Gradle needs Java 8
+
 name: CI Debian 8
 
 #env:
