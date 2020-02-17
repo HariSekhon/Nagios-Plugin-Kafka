@@ -27,32 +27,33 @@ on: # [push]
 jobs:
   build:
     #name: build
-    timeout-minutes: 10
-    #runs-on: ubuntu-latest
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, ubuntu-16.04]
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
       name: Maven Cache
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-maven-nagios-plugin-kafka-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
     - uses: actions/cache@v1
       name: SBT Cache
       with:
         path: ~/.sbt
-        key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
+        key: ${{ runner.os }}-sbt-nagios-plugin-kafka-${{ hashFiles('**/build.sbt') }}
     - uses: actions/cache@v1
       name: SBT Ivy Cache
       with:
         path: ~/.ivy2/cache
-        key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('**/build.sbt') }}
+        key: ${{ runner.os }}-sbt-ivy-cache-nagios-plugin-kafka-${{ hashFiles('**/build.sbt') }}
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-nagios-plugin-kafka  # ${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - name: build
       run: make
     - name: test
