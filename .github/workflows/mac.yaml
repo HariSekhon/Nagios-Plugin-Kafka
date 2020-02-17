@@ -27,7 +27,7 @@ on:
 jobs:
   build:
     #name: build
-    timeout-minutes: 10
+    timeout-minutes: 60
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -48,6 +48,14 @@ jobs:
       with:
         path: ~/.ivy2/cache
         key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('**/build.sbt') }}
+    - uses: actions/cache@v1
+      with:
+        path: ~/Library/Caches/pip
+        key: ${{ runner.os }}-pip-nagios-plugin-kafka  # -${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    - name: brew update
+      run: which brew && brew update || :
     - name: build
       run: make
     - name: test
