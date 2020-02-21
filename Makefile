@@ -49,7 +49,6 @@ DOCKER_IMAGE := harisekhon/nagios-plugin-kafka
 .PHONY: build
 build:
 	$(MAKE) init
-	if [ -z "$(CPANM)" ]; then make; exit $$?; fi
 	$(MAKE) gradle
 
 .PHONY: init
@@ -72,7 +71,6 @@ mvn:
 	@echo Nagios Plugin - Kafka - Maven Build
 	@echo ===================================
 	$(MAKE) init
-	if [ -z "$(CPANM)" ]; then make mvn; exit $$?; fi
 	$(MAKE) lib-mvn
 	./mvnw clean package
 	ln -sfv target/check_kafka-*.jar check_kafka.jar
@@ -83,7 +81,6 @@ gradle:
 	@echo Nagios Plugin - Kafka - Gradle Build
 	@echo ====================================
 	$(MAKE) init
-	if [ -z "$(CPANM)" ]; then make gradle; exit $$?; fi
 	$(MAKE) lib-gradle
 	./gradlew clean shadowJar
 	ln -sfv build/libs/check_kafka-*.jar check_kafka.jar
@@ -94,7 +91,6 @@ sbt:
 	@echo Nagios Plugin - Kafka - SBT Build
 	@echo =================================
 	$(MAKE) init
-	if [ -z "$(CPANM)" ]; then make sbt; exit $$?; fi
 	$(MAKE) lib-sbt
 	sbt clean assembly
 	ln -sfv target/scala-*/check_kafka-assembly-*.jar check_kafka.jar
