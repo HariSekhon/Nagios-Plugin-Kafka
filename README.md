@@ -18,7 +18,7 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![wercker status](https://app.wercker.com/status/fe4f87bf98f31e4c22a3041c0966644b/s/master "wercker status")](https://app.wercker.com/project/byKey/fe4f87bf98f31e4c22a3041c0966644b)
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Nagios-Plugin-Kafka?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=11&branchName=master)
-[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/Nagios-Plugin-Kafka/master?logo=bitbucket)](https://bitbucket.org/harisekhon/Nagios-Plugin-Kafka/addon/pipelines/home#!/)
+[![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/nagios-plugin-kafka/master?logo=bitbucket)](https://bitbucket.org/harisekhon/nagios-plugin-kafka/addon/pipelines/home#!/)
 [![GitLab Pipeline](https://img.shields.io/gitlab/pipeline/harisekhon/Nagios-Plugin-Kafka?logo=gitlab)](https://gitlab.com/HariSekhon/Nagios-Plugin-Kafka/pipelines)
 
 [![CI Mac](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Mac%22)
