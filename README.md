@@ -20,6 +20,7 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![DockerHub Build Automated](https://img.shields.io/docker/automated/harisekhon/nagios-plugin-kafka.svg)](https://hub.docker.com/r/harisekhon/nagios-plugin-kafka)
 [![Docker Build Status](https://img.shields.io/docker/cloud/build/harisekhon/nagios-plugin-kafka.svg)](https://hub.docker.com/r/harisekhon/nagios-plugin-kafka/builds)
 [![MicroBadger](https://images.microbadger.com/badges/image/harisekhon/nagios-plugin-kafka.svg)](http://microbadger.com/#/images/harisekhon/nagios-plugin-kafka)
+[![CI Builds Overview](https://img.shields.io/badge/CI%20Builds-Overview%20Page-blue)](https://github.com/HariSekhon/DevOps-Bash-tools/blob/master/STATUS.md)
 
 [![Travis CI](https://img.shields.io/travis/harisekhon/Nagios-Plugin-Kafka/master?logo=travis&label=Travis)](https://travis-ci.org/HariSekhon/Nagios-Plugin-Kafka)
 [![AppVeyor](https://img.shields.io/appveyor/build/harisekhon/Nagios-Plugin-Kafka/master?logo=appveyor&label=AppVeyor)](https://ci.appveyor.com/project/HariSekhon/Nagios-Plugin-Kafka/branch/master)
