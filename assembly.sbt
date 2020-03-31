@@ -22,7 +22,9 @@ assemblyMergeStrategy in assembly := {
     case PathList("org", "apache", "commons", p @ _*)                                           => MergeStrategy.first
     case PathList("jline", p @ _*)    => MergeStrategy.first
     case PathList("log4j.properties") => MergeStrategy.first
-	case x =>
-		val oldStrategy = (assemblyMergeStrategy in assembly).value
-		oldStrategy(x)
+	//case x =>
+	//	val oldStrategy = (assemblyMergeStrategy in assembly).value
+	//	oldStrategy(x)
+    case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+    case x => MergeStrategy.first
 }
