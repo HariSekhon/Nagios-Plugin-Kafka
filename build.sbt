@@ -35,7 +35,7 @@ libraryDependencies ++= Seq (
     "com.linkedin.harisekhon" %% "harisekhon-utils" % "1.17.6",
     // Kafka 0.10 API bug:
     // Cannot auto-commit offsets for group ... since the coordinator is unknown
-    "org.apache.kafka" %% "kafka" % "1.1.1",
+    "org.apache.kafka" %% "kafka" % "2.2.2",
     //"net.sf.jopt-simple" % "jopt-simple" % "4.9"
     "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 )
