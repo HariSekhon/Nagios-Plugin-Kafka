@@ -45,6 +45,7 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-blue?logo=bitbucket)](https://bitbucket.org/HariSekhon/Nagios-Plugin-Kafka)
 
 [![CI Mac](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Mac/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Mac%22)
+[![CI Mac 10.15](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Mac%2010.15/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Mac+10.15%22)
 [![CI Ubuntu](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Ubuntu%22)
 [![CI Ubuntu 16.04](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Ubuntu%2016.04/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Ubuntu+16.04%22)
 [![CI Ubuntu 18.04](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Ubuntu%2018.04/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Ubuntu+18.04%22)
