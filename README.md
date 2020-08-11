@@ -7,8 +7,8 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Nagios-Plugin-Kafka)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Nagios-Plugin-Kafka)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=security_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Nagios-Plugin-Kafka)
-[![GitHub stars](https://img.shields.io/github/stars/harisekhon/Nagios-Plugin-Kafka)](https://github.com/harisekhon/Nagios-Plugin-Kafka/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/harisekhon/Nagios-Plugin-Kafka)](https://github.com/harisekhon/Nagios-Plugin-Kafka/network)
+[![GitHub stars](https://img.shields.io/github/stars/harisekhon/Nagios-Plugin-Kafka?logo=github)](https://github.com/harisekhon/Nagios-Plugin-Kafka/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/harisekhon/Nagios-Plugin-Kafka?logo=github)](https://github.com/harisekhon/Nagios-Plugin-Kafka/network)
 <!--
 [![Dependency Status](https://www.versioneye.com/user/projects/57616d340a82b200276f6669/badge.svg)](https://www.versioneye.com/user/projects/57616d340a82b200276f6669)
 -->
