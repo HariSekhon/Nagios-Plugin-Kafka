@@ -21,7 +21,6 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![DockerHub Build Automated](https://img.shields.io/docker/automated/harisekhon/nagios-plugin-kafka?logo=docker)](https://hub.docker.com/r/harisekhon/nagios-plugin-kafka)
 [![Docker Build Status](https://img.shields.io/docker/cloud/build/harisekhon/nagios-plugin-kafka?logo=docker)](https://hub.docker.com/r/harisekhon/nagios-plugin-kafka/builds)
 [![MicroBadger](https://images.microbadger.com/badges/image/harisekhon/nagios-plugin-kafka.svg)](http://microbadger.com/#/images/harisekhon/nagios-plugin-kafka)
-[![CI Builds Overview](https://img.shields.io/badge/CI%20Builds-Overview%20Page-blue?logo=circleci?logo=circleci)](https://bitbucket.org/harisekhon/devops-bash-tools/src/master/STATUS.md)
 
 [![Travis CI](https://img.shields.io/travis/harisekhon/Nagios-Plugin-Kafka/master?logo=travis&label=Travis)](https://travis-ci.org/HariSekhon/Nagios-Plugin-Kafka)
 [![AppVeyor](https://img.shields.io/appveyor/build/harisekhon/Nagios-Plugin-Kafka/master?logo=appveyor&label=AppVeyor)](https://ci.appveyor.com/project/HariSekhon/Nagios-Plugin-Kafka/branch/master)
@@ -39,6 +38,7 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![Jenkins](https://img.shields.io/badge/Jenkins-ready-blue?logo=jenkins?logo=jenkins)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/Jenkinsfile)
 [![Concourse](https://img.shields.io/badge/Concourse-ready-blue?logo=concourse?logo=concourse)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/.concourse.yml)
 [![GoCD](https://img.shields.io/badge/GoCD-ready-blue?logo=go?logo=go)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/.gocd.yml)
+[![CI Builds Overview](https://img.shields.io/badge/CI%20Builds-Overview%20Page-blue?logo=circleci?logo=circleci)](https://bitbucket.org/harisekhon/devops-bash-tools/src/master/STATUS.md)
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Nagios-Plugin-Kafka?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=11&branchName=master)
 [![BitBucket Pipeline](https://img.shields.io/bitbucket/pipelines/harisekhon/nagios-plugin-kafka/master?logo=bitbucket&label=BitBucket)](https://bitbucket.org/harisekhon/nagios-plugin-kafka/addon/pipelines/home#!/)
