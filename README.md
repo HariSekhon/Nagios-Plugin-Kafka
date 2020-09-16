@@ -71,6 +71,8 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![CI SBT](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20SBT/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+SBT%22)
 [![CI Gradle](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/CI%20Gradle/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22CI+Gradle%22)
 
+[git.io/nagios-plugin-kafka](https://git.io/nagios-plugin-kafka)
+
 Kafka 0.9+ API CLI Tester & Advanced Nagios Plugin with Kerberos support, written in Scala.
 
 Tested on Hortonworks HDP 2.4.0 with Kerberos + Ranger ACLs and Apache Kafka 0.8.x / 0.9.0.1 [docker images](https://hub.docker.com/r/harisekhon/kafka) with regular ACLs.
