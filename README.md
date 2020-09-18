@@ -144,6 +144,12 @@ docker run harisekhon/nagios-plugin-kafka check_kafka --help
 
 #### Automated Build from Source
 
+```
+curl -L git.io/nagios-plugin-kafka-bootstrap | sh
+```
+
+OR
+
 Maven, Gradle and SBT automated builds are all provided.
 
 A self-contained jar file with all dependencies will be created and symlinked to ```check_kafka.jar``` at the top level.
