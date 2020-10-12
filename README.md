@@ -145,7 +145,7 @@ docker run harisekhon/nagios-plugin-kafka check_kafka --help
 #### Automated Build from Source
 
 ```
-curl -L git.io/nagios-plugin-kafka-bootstrap | sh
+curl -L https://git.io/nagios-plugin-kafka-bootstrap | sh
 ```
 
 OR
