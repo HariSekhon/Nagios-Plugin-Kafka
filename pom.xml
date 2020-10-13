@@ -40,7 +40,7 @@
     <harisekhon-utils.version>1.17.6</harisekhon-utils.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
     <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <!--
       Kafka 0.10 API bug:
       Cannot auto-commit offsets for group ... since the coordinator is unknown
