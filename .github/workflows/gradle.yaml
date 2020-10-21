@@ -11,7 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
-name: CI Gradle
+name: Gradle
 
 env:
   DEBUG: 1
