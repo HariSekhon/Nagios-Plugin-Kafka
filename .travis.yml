@@ -13,8 +13,16 @@
 #  http://www.linkedin.com/in/harisekhon
 #
 
+# ============================================================================ #
+#                               T r a v i s   C I
+# ============================================================================ #
+
+# https://docs.travis-ci.com/user/customizing-the-build/
+
 version: ~> 1.0
 
+# ================================================
+# https://docs.travis-ci.com/user/languages/scala/
 language: scala
 scala:
   # Travis CI broke switching during test phase for these versions
@@ -39,11 +47,31 @@ jdk:
   # dropped OpenJDK 7 as it's getting buffer overflows from both SBT and Maven Surefire
   # - openjdk7
 
+# =========================================
+# https://docs.travis-ci.com/user/multi-os/
 #os:
 #  - linux
 #  - osx
 
-#dist: bionic
+# =======================================
+# https://docs.travis-ci.com/user/docker/
+services:
+  - docker
+
+# ==============================================
+# https://docs.travis-ci.com/user/notifications/
+notifications:
+  email: false
+
+# =================================================================================
+# https://docs.travis-ci.com/user/customizing-the-build/#building-specific-branches
+# https://docs.travis-ci.com/user/conditional-builds-stages-jobs
+#branches:
+#  only:
+#    - master
+
+# ==============================================
+# https://docs.travis-ci.com/user/job-lifecycle/
 
 # avoid package checksum mismatches when installing packages
 before_install:
@@ -54,18 +82,8 @@ install:
   #- travis_retry make random-build
   - travis_retry make all
 
-notifications:
-  email: false
-
-branches:
-  only:
-    - master
-
 #script:
 #  - travis_retry make test
-
-services:
-  - docker
 
 after_success:
   # Nagios Plugin Kafka
