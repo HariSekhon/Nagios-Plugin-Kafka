@@ -80,6 +80,9 @@ cache:
   - pip
   - directories:
     - $HOME/.cache
+    - $HOME/.cpan
+    - $HOME/.cpanm
+    - $HOME/.gem
     - $HOME/.m2
     - $HOME/.ivy
     - $HOME/.ivy2
