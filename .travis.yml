@@ -70,6 +70,19 @@ notifications:
 #  only:
 #    - master
 
+# ========================================
+# https://docs.travis-ci.com/user/caching/
+
+cache:
+  - pip
+  - directories:
+    - $HOME/.cache
+    - $HOME/.m2
+    - $HOME/.ivy
+    - $HOME/.gradle
+    - $HOME/.sbt
+    - bash-tools/pytools_checks
+
 # ==============================================
 # https://docs.travis-ci.com/user/job-lifecycle/
 
