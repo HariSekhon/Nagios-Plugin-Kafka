@@ -55,6 +55,8 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![Repo on GitHub](https://img.shields.io/badge/repo-GitHub-2088FF?logo=github)](https://github.com/HariSekhon/Nagios-Plugin-Kafka)
 [![Repo on GitLab](https://img.shields.io/badge/repo-GitLab-FCA121?logo=gitlab)](https://gitlab.com/HariSekhon/Nagios-Plugin-Kafka)
 [![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-0052CC?logo=bitbucket)](https://bitbucket.org/HariSekhon/Nagios-Plugin-Kafka)
+[![Validation](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/validate.yaml/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/validate.yaml)
+[![Semgrep](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/semgrep.yaml/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/semgrep.yaml)
 
 [![GitHub Actions Ubuntu](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/GitHub%20Actions%20Ubuntu/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22GitHub+Actions+Ubuntu%22)
 [![Mac](https://github.com/HariSekhon/Nagios-Plugin-Kafka/workflows/Mac/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions?query=workflow%3A%22Mac%22)
