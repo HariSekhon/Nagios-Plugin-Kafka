@@ -13,8 +13,8 @@
 
 name: Maven
 
-env:
-  DEBUG: 1
+#env:
+#  DEBUG: 1
 
 on: # [push]
   push:
