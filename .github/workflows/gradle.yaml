@@ -13,10 +13,10 @@
 
 name: Gradle
 
-env:
-  DEBUG: 1
+#env:
+#  DEBUG: 1
 
-on: # [push]
+on:
   push:
     branches:
       - master
