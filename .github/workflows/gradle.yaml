@@ -11,6 +11,7 @@
 #  https://www.linkedin.com/in/harisekhon
 #
 
+---
 name: Gradle
 
 #env:
@@ -21,8 +22,7 @@ on:
     branches:
       - master
   schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '0 7 * * *'
+    - cron: '0 7 * * *'
 
 jobs:
   build:
@@ -37,50 +37,50 @@ jobs:
           - ubuntu-latest
           - ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v1
-      name: Maven Cache
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - uses: actions/cache@v1
-      name: Maven Wrapper
-      with:
-        path: ~/.m2/wrapper
-        key: ${{ runner.os }}-maven-wrapper-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-wrapper-
-    - uses: actions/cache@v1
-      name: SBT Cache
-      with:
-        path: ~/.sbt
-        key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
-        restore-keys: |
-          ${{ runner.os }}-sbt-
-    - uses: actions/cache@v1
-      name: SBT Ivy Cache
-      with:
-        path: ~/.ivy2/cache
-        key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('**/build.sbt') }}
-        restore-keys: |
-          ${{ runner.os }}-sbt-ivy-cache-
-    - uses: actions/cache@v1
-      name: Gradle Cache
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/build.gradle') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-cache-
-    - uses: actions/cache@v1
-      name: Gradle Wrapper
-      with:
-        path: ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/build.gradle') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-wrapper-
-    - name: gradle build
-      run: make gradle
-    - name: test
-      run: make test
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        name: Maven Cache
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - uses: actions/cache@v1
+        name: Maven Wrapper
+        with:
+          path: ~/.m2/wrapper
+          key: ${{ runner.os }}-maven-wrapper-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-wrapper-
+      - uses: actions/cache@v1
+        name: SBT Cache
+        with:
+          path: ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
+          restore-keys: |
+            ${{ runner.os }}-sbt-
+      - uses: actions/cache@v1
+        name: SBT Ivy Cache
+        with:
+          path: ~/.ivy2/cache
+          key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('**/build.sbt') }}
+          restore-keys: |
+            ${{ runner.os }}-sbt-ivy-cache-
+      - uses: actions/cache@v1
+        name: Gradle Cache
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-cache-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-cache-
+      - uses: actions/cache@v1
+        name: Gradle Wrapper
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-wrapper-
+      - name: gradle build
+        run: make gradle
+      - name: test
+        run: make test
