@@ -32,18 +32,18 @@ Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 [![GoCD](https://img.shields.io/badge/GoCD-ready-blue?logo=go)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/.gocd.yml)
 [![TeamCity](https://img.shields.io/badge/TeamCity-ready-blue?logo=teamcity)](https://github.com/HariSekhon/TeamCity-CI)
 
-[![Travis CI](https://img.shields.io/badge/TravisCI-legacy-lightgrey?logo=travis&label=Travis%20CI)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/.travis.yml)
 [![AppVeyor](https://img.shields.io/appveyor/build/harisekhon/Nagios-Plugin-Kafka/master?logo=appveyor&label=AppVeyor)](https://ci.appveyor.com/project/HariSekhon/Nagios-Plugin-Kafka/branch/master)
 [![Drone](https://img.shields.io/drone/build/HariSekhon/Nagios-Plugin-Kafka/master?logo=drone&label=Drone)](https://cloud.drone.io/HariSekhon/Nagios-Plugin-Kafka)
 [![CircleCI](https://circleci.com/gh/HariSekhon/Nagios-Plugin-Kafka.svg?style=svg)](https://circleci.com/gh/HariSekhon/Nagios-Plugin-Kafka)
 [![Codeship Status for HariSekhon/Nagios-Plugin-Kafka](https://app.codeship.com/projects/faff7930-3c5f-0138-8a0b-32bf6ef9714a/status?branch=master)](https://app.codeship.com/projects/387257)
-[![Shippable](https://img.shields.io/shippable/5e52c63620adbf000670adf6/master?label=Shippable&logo=jfrog)](https://app.shippable.com/github/HariSekhon/Nagios-Plugin-Kafka/dashboard/jobs)
 [![BuildKite](https://img.shields.io/buildkite/835ba032422b5aa6c1df641e6a7989ac93bb8a34fcca735243/master?label=BuildKite&logo=buildkite)](https://buildkite.com/hari-sekhon/nagios-plugin-kafka)
 [![Codefresh](https://g.codefresh.io/api/badges/pipeline/harisekhon/GitHub%2FNagios%20Plugin%20Kafka?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWU1MmM5OGNiM2FiOWUzM2Y3ZDZmYjM3.O69674cW7vYom3v5JOGKXDbYgCVIJU9EWhXUMHl3zwA&type=cf-1)](https://g.codefresh.io/pipelines/edit/new/builds?id=5e58e3573953b779e04b7907&pipeline=Nagios%20Plugin%20Kafka&projects=GitHub&projectId=5e52ca8ea284e00f882ea992&context=github&filter=page:1;pageSize:10;timeFrameStart:week)
 [![Cirrus CI](https://img.shields.io/cirrus/github/HariSekhon/Nagios-Plugin-Kafka/master?logo=Cirrus%20CI&label=Cirrus%20CI)](https://cirrus-ci.com/github/HariSekhon/Nagios-Plugin-Kafka)
 [![Semaphore](https://harisekhon.semaphoreci.com/badges/Nagios-Plugin-Kafka.svg)](https://harisekhon.semaphoreci.com/projects/Nagios-Plugin-Kafka)
 [![Wercker](https://app.wercker.com/status/fe4f87bf98f31e4c22a3041c0966644b/s/master "wercker status")](https://app.wercker.com/harisekhon/nagios-plugin-kafka/runs)
 [![Buddy](https://img.shields.io/badge/Buddy-ready-1A86FD?logo=buddy)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/buddy.yml)
+[![Shippable](https://img.shields.io/badge/Shippable-legacy-lightgrey?logo=jfrog&label=Shippable)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/shippable.yml)
+[![Travis CI](https://img.shields.io/badge/TravisCI-legacy-lightgrey?logo=travis&label=Travis%20CI)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/blob/master/.travis.yml)
 <!--[![Wercker](https://img.shields.io/wercker/ci/5e58efdecdec020800455736/master?label=Wercker&logo=oracle)](https://app.wercker.com/harisekhon/nagios-plugin-kafka/runs)-->
 
 [![Azure DevOps Pipeline](https://dev.azure.com/harisekhon/GitHub/_apis/build/status/HariSekhon.Nagios-Plugin-Kafka?branchName=master)](https://dev.azure.com/harisekhon/GitHub/_build/latest?definitionId=11&branchName=master)
