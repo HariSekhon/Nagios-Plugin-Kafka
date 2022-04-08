@@ -44,6 +44,6 @@ jobs:
     name: Make
     uses: HariSekhon/GitHub-Actions/.github/workflows/make.yaml@master
     with:
-      build-target: gradle
+      build-targets: gradle
       caches: gradle
       debug: ${{ github.event.inputs.debug || false }}
