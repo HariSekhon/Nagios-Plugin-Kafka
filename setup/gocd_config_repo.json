@@ -4,7 +4,7 @@
   "material": {
     "type": "git",
     "attributes": {
-  	"url": "https://github.com/harisekhon/nagios-plugin-kafka",
+  	"url": "https://github.com/HariSekhon/Nagios-Plugin-Kafka",
   	"branch": "master",
   	"auto_update": true
     }

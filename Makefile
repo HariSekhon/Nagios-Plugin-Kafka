@@ -3,14 +3,14 @@
 #  Author: Hari Sekhon
 #  Date: 2016-06-06 22:57:08 +0100 (Mon, 06 Jun 2016)
 #
-#  https://github.com/harisekhon/nagios-plugin-kafka
+#  https://github.com/HariSekhon/Nagios-Plugin-Kafka
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
 #  If you're using my code you're welcome to connect with me on LinkedIn
 #  and optionally send me feedback to help improve or steer this or other code I publish
 #
-#  https://www.linkedin.com/in/harisekhon
+#  https://www.linkedin.com/in/HariSekhon
 #
 
 ifneq ("$(wildcard bash-tools/Makefile.in)", "")
@@ -34,15 +34,15 @@ DOCKER_IMAGE := harisekhon/nagios-plugin-kafka
 
 # Alpine:
 #
-#   apk add --no-cache git make && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
+#   apk add --no-cache git make && git clone https://github.com/HariSekhon/Nagios-Plugin-Kafka && cd nagios-plugin-kafka && make
 
 # Debian / Ubuntu:
 #
-#   apt-get update && apt-get install -y make git && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
+#   apt-get update && apt-get install -y make git && git clone https://github.com/HariSekhon/Nagios-Plugin-Kafka && cd nagios-plugin-kafka && make
 
 # RHEL / CentOS:
 #
-#   yum install -y make git && git clone https://github.com/harisekhon/nagios-plugin-kafka && cd nagios-plugin-kafka && make
+#   yum install -y make git && git clone https://github.com/HariSekhon/Nagios-Plugin-Kafka && cd nagios-plugin-kafka && make
 
 # ===================
 

@@ -4,7 +4,7 @@
 #  Author: Hari Sekhon
 #  Date: 2015-05-25 01:38:24 +0100 (Mon, 25 May 2015)
 #
-#  https://github.com/harisekhon/nagios-plugin-kafka
+#  https://github.com/HariSekhon/Nagios-Plugin-Kafka
 #
 #  License: see accompanying Hari Sekhon LICENSE file
 #
