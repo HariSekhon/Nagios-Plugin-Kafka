@@ -1,5 +1,4 @@
-Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
-==============================
+# Kafka Scala API - Advanced Nagios Plugin / CLI Tool with Kerberos support
 
 [![GitHub stars](https://img.shields.io/github/stars/harisekhon/Nagios-Plugin-Kafka?logo=github)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/harisekhon/Nagios-Plugin-Kafka?logo=github)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/network)
