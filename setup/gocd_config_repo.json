@@ -1,5 +1,5 @@
 {
-  "id": "nagios-plugin-kafka",
+  "id": "Nagios-Plugin-Kafka",
   "plugin_id": "yaml.config.plugin",
   "material": {
     "type": "git",
