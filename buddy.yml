@@ -24,7 +24,7 @@
   actions:
   - action: "Execute: make ci test"
     type: "BUILD"
-    working_directory: "/buddy/nagios-plugin-kafka"
+    working_directory: "/buddy/Nagios-Plugin-Kafka"
     docker_image_name: "library/ubuntu"
     docker_image_tag: "18.04"
     #setup_commands:
@@ -38,6 +38,6 @@
       - make ci
       - make test
     volume_mappings:
-      - "/:/buddy/nagios-plugin-kafka"
+      - "/:/buddy/Nagios-Plugin-Kafka"
     shell: "BASH"
     trigger_condition: "ALWAYS"
