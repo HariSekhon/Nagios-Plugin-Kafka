@@ -14,6 +14,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Nagios-Plugin-Kafka)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Nagios-Plugin-Kafka)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=security_rating)](https://sonarcloud.io/dashboard?id=HariSekhon_Nagios-Plugin-Kafka)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=HariSekhon_Nagios-Plugin-Kafka&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=HariSekhon_Nagios-Plugin-Kafka)
 
 [![Linux](https://img.shields.io/badge/OS-Linux-blue?logo=linux)](https://github.com/HariSekhon/Nagios-Plugin-Kafka)
 [![Mac](https://img.shields.io/badge/OS-Mac-blue?logo=apple)](https://github.com/HariSekhon/Nagios-Plugin-Kafka)
