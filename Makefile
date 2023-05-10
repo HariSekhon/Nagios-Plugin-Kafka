@@ -59,7 +59,7 @@ init:
 .PHONY: random-build
 random-build:
 	@# SBT + Maven Surefire plugin both get buffer overflow on openjdk7 :-/
-	@x=$$(bash-tools/random_select.sh build mvn gradle sbt); echo $(MAKE) $$x; $(MAKE) $$x
+	@x=$$(bash-tools/bin/random_select.sh build mvn gradle sbt); echo $(MAKE) $$x; $(MAKE) $$x
 
 .PHONY: maven
 maven: mvn
