@@ -22,7 +22,7 @@ cd "$srcdir/..";
 # shellcheck disable=SC1091
 . bash-tools/lib/utils.sh
 
-bash-tools/check_all.sh
+bash-tools/checks/check_all.sh
 
 # TODO: find time to build and test newer versions of Kafka docker etc.
 exit 0
