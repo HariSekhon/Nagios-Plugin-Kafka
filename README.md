@@ -56,7 +56,7 @@
 [![Repo on Azure DevOps](https://img.shields.io/badge/repo-Azure%20DevOps-0078D7?logo=azure%20devops)](https://dev.azure.com/harisekhon/GitHub/_git/Nagios-Plugin-Kafka)
 [![Repo on BitBucket](https://img.shields.io/badge/repo-BitBucket-0052CC?logo=bitbucket)](https://bitbucket.org/HariSekhon/Nagios-Plugin-Kafka)
 
-[![ShellCheck](https://github.com/HariSekhon/lib-java/actions/workflows/shellcheck.yaml/badge.svg)](https://github.com/HariSekhon/lib-java/actions/workflows/shellcheck.yaml)
+[![ShellCheck](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/shellcheck.yaml/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/shellcheck.yaml)
 [![JSON](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/json.yaml/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/json.yaml)
 [![YAML](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/yaml.yaml/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/yaml.yaml)
 [![XML](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/xml.yaml/badge.svg)](https://github.com/HariSekhon/Nagios-Plugin-Kafka/actions/workflows/xml.yaml)
