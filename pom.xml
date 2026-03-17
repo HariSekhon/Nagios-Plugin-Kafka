@@ -45,7 +45,7 @@
       Kafka 0.10 API bug:
       Cannot auto-commit offsets for group ... since the coordinator is unknown
     -->
-    <kafka.version>2.2.2</kafka.version>
+    <kafka.version>2.7.0</kafka.version>
     <!-- TODO: upgrade to log4j 2 or slf4j -->
     <log4j.version>1.2.17</log4j.version>
     <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
